@@ -3,8 +3,8 @@
 
 <mapper namespace="com.project.smartStore.mapper.UserMapper">
     <insert id="insertUser" parameterType="com.project.smartStore.dto.UserDto">
-        INSERT INTO users(id, password, email, name, phone)
-        VALUES(#{id}, #{password}, #{email}, #{name}, #{phone})
+        INSERT INTO member(id, password, name, phone, type)
+        VALUES(#{id}, #{password}, #{name}, #{phone}, #{type})
     </insert>
 
     <select id="isUsingId" parameterType="String" resultType="boolean">
