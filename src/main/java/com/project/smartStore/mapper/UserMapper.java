@@ -1,5 +1,7 @@
 package com.project.smartStore.mapper;
 
+import java.util.Optional;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project.smartStore.dto.UserDto;
@@ -11,4 +13,6 @@ import com.project.smartStore.dto.UserDto;
 public interface UserMapper {
 	void insertUser(UserDto user);
 	boolean isUsingId(String id);
+	Optional<UserDto> findUserByIdAndPassword(UserDto user);
+	UserDto findUserById(UserDto user);
 }

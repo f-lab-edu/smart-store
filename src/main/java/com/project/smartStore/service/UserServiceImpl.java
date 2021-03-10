@@ -1,5 +1,9 @@
 package com.project.smartStore.service;
 
+import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
 import com.project.smartStore.dto.UserDto;
@@ -21,6 +25,7 @@ public class UserServiceImpl implements UserService{
 		if(isUsingId(user.getId())) {
 			throw new DuplicatedIdException("동일한 아이디가 존재합니다. ");
 		}
+
 		String salt = PasswordEncryptor.generateSalt();
 		String encryptedPassword = PasswordEncryptor.getEncrypt(user.getPassword(), salt);
 		user.setPassword(encryptedPassword);
@@ -29,18 +34,27 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDto findUserByIdAndPassword(UserDto user) {
-		return null;
-	}
-
-	@Override
 	public boolean isUsingId(String userId) {
-		return false;
+		return userMapper.isUsingId(userId);
 	}
 
 	@Override
-	public void loginUser(UserDto user) {
+	public Optional<UserDto> findUserByIdAndPassword(UserDto user) {
+		Optional<UserDto> result = Optional.ofNullable(userMapper.findUserById(user));
 
+		return userMapper.findUserByIdAndPassword(result.orElse(null));
+	}
+
+
+	@Override
+	public boolean loginUser(UserDto user, HttpSession session) {
+		Optional<UserDto> result = findUserByIdAndPassword(user);
+
+		if(result.isPresent()) {
+			session.setAttribute("loginId", result.get().getId());
+		}
+
+		return result.isPresent();
 	}
 
 	@Override
