@@ -1,6 +1,6 @@
 package com.project.smartStore.controller;
 
-import java.security.NoSuchAlgorithmException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,14 +35,19 @@ public class UserController {
 
 	@PostMapping("/join")
 	public HttpStatus joinUser(@RequestBody UserDto user){
+
 		userService.joinUser(user);
 
 		return HttpStatus.CREATED;
 	}
 
 	@PostMapping("/login")
-	public HttpStatus loginUser(@RequestBody UserDto user) {
-		userService.findUserByIdAndPassword(user);
+	public HttpStatus loginUser(@RequestBody UserDto user, HttpSession session) {
+
+		if(!userService.loginUser(user, session)) {
+			return HttpStatus.NOT_FOUND;
+		}
+
 		return HttpStatus.OK;
 	}
 }

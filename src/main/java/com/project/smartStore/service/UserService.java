@@ -1,5 +1,9 @@
 package com.project.smartStore.service;
 
+import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
+
 import com.project.smartStore.dto.UserDto;
 
 /**
@@ -8,8 +12,8 @@ import com.project.smartStore.dto.UserDto;
 public interface UserService {
 	public void joinUser(UserDto user);
 	public boolean isUsingId(String userId);
-	public void loginUser(UserDto user);
-	public UserDto findUserByIdAndPassword(UserDto user);
+	public boolean loginUser(UserDto user, HttpSession session);
+	public Optional<UserDto> findUserByIdAndPassword(UserDto user);
 	public void logOutUser(UserDto user);
 
 }

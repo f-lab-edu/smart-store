@@ -2,13 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.smartStore.mapper.UserMapper">
-    <insert id="insertUser" parameterType="com.project.smartStore.dto.UserDto">
+
+    <insert id="insertUser" parameterType="UserDto">
         INSERT INTO member(id, password, name, phone, type)
         VALUES(#{id}, #{password}, #{name}, #{phone}, #{type})
     </insert>
 
     <select id="isUsingId" parameterType="String" resultType="boolean">
         SELECT EXISTS
-        (SELECT id FROM users WHERE id = #{id})
+        (SELECT id FROM member WHERE id = #{id})
+    </select>
+
+    <select id="findUserById" parameterType="UserDto" resultType="UserDto">
+    	SELECT ID , PASSWORD
+   		FROM member
+   		where id = #{id}
+    </select>
+
+    <select id="findUserByIdAndPassword" parameterType="UserDto"  resultType="UserDto" >
+    	SELECT ID, PHONE, NAME, TYPE
+   		FROM member
+   		where id = #{id}
+   		AND PASSWORD = #{password}
     </select>
 </mapper>
