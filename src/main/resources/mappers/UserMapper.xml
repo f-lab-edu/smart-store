@@ -14,15 +14,15 @@
     </select>
 
     <select id="findUserById" parameterType="UserDto" resultType="UserDto">
-    	SELECT ID , PASSWORD
-   		FROM member
-   		where id = #{id}
+      SELECT ID , PASSWORD
+      FROM member
+      where id = #{id}
     </select>
 
     <select id="findUserByIdAndPassword" parameterType="UserDto"  resultType="UserDto" >
-    	SELECT ID, PHONE, NAME, TYPE
-   		FROM member
-   		where id = #{id}
-   		AND PASSWORD = #{password}
+      SELECT ID, PHONE, NAME, TYPE
+      FROM member
+      where id = #{id}
+      AND PASSWORD = #{password}
     </select>
 </mapper>
