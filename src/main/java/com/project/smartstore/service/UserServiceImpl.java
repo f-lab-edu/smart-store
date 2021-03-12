@@ -52,8 +52,8 @@ public class UserServiceImpl implements UserService {
     return result.isPresent();
   }
 
-	@Override
-	public void logOutUser(UserDto user) {
+  @Override
+  public void logOutUser(UserDto user) {
 
-	}
+  }
 }
