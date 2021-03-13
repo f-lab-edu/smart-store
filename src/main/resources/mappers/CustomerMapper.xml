@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.smartStore.customer.CustomerMapper">
+
+  <insert id="insertCustomer"
+    parameterType="com.project.smartStore.customer.CustomerDTO">
+    INSERT INTO customer (id, password, name, phone_num)
+        values
+        (#{id}, #{password}, #{name}, #{phoneNum})
+  </insert>
+
+  <select id="selectCustomerDetailById"
+    parameterType="String" resultType="com.project.smartStore.customer.CustomerDTO">
+    SELECT id, name, phone_num as phoneNum FROM customer where id = #{id};
+  </select>
+
+  <update id="updateCustomerPwd"
+    parameterType="String" >
+    UPDATE customer SET password = #{updatePwd} WHERE id = #{id};
+  </update>
+
+  <update id="updateCustomerName"
+    parameterType="String" >
+    UPDATE customer SET name = #{updateName} WHERE id = #{id};
+  </update>
+
+  <update id="updateCustomerPhoneNum"
+    parameterType="String" >
+    UPDATE customer SET phone_num = #{updatePhoneNum} WHERE id = #{id};
+  </update>
+
+  <delete id="deleteCustomerById"
+    parameterType="String">
+    DELETE FROM customer WHERE id = #{id};
+  </delete>
+
+</mapper>
