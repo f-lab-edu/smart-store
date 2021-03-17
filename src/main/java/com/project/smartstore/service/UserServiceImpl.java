@@ -2,6 +2,7 @@ package com.project.smartstore.service;
 
 import com.project.smartstore.dto.UserDto;
 import com.project.smartstore.exception.DuplicatedIdException;
+import com.project.smartstore.exception.NoneExistentUserException;
 import com.project.smartstore.mapper.UserMapper;
 import com.project.smartstore.utils.PasswordEncryptor;
 import java.util.Optional;
@@ -44,14 +45,14 @@ public class UserServiceImpl implements UserService {
 
 
   @Override
-  public boolean loginUser(UserDto user, HttpSession session) {
+  public void loginUser(UserDto user, HttpSession session) {
     Optional<UserDto> result = findUserByIdAndPassword(user);
 
     if (!result.isPresent()) {
-      session.setAttribute(LOGIN_ID, result.get().getId());
+      throw new NoneExistentUserException("존재하지 않는 사용자입니다.");
     }
 
-    return result.isPresent();
+    session.setAttribute(LOGIN_ID, result.get().getId());
   }
 
   @Override
