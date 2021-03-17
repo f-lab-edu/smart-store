@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-/* 
+/*
  *
- * 
+ *
  * @RestController : @Controller와 @ResponseBody가 합쳐진 기능의 어노테이션입니다.
  *     또한 @RequestMapping 메서드가 @ResponseBody를 수행한다는 의미도 있습니다.
  *
@@ -21,21 +21,21 @@ import org.springframework.web.bind.annotation.RestController;
  *     주로 의존성 주입(Dependency Injection) 편의성을 위해서 사용되곤 합니다.
  *
  * @RequestBody 어노테이션과  @ResponseBody 어노테이션은 각각 HTTP 요청 몸체를 자바 객체로 변환하는 데 사용된다.
- *     이 어노테이션을 이용하면 HTTP 요청 몸체를 자바 객체로 전달받을 수 있다. 
+ *     이 어노테이션을 이용하면 HTTP 요청 몸체를 자바 객체로 전달받을 수 있다.
  *     비슷하게 @ResponseBody 어노테이션을 이용하면 자바 객체를 HTTP 응답 몸체로 전송할 수 있다.
  *
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
   private final UserService userService;
-  
-  /** 
-   * 회원가입 메서드. 
+
+  /**
+   * 회원가입 메서드.
    */
-  @PostMapping("/join") 
+  @PostMapping("/join")
   public HttpStatus joinUser(@RequestBody UserDto user) {
 
     userService.joinUser(user);
@@ -43,8 +43,8 @@ public class UserController {
     return HttpStatus.CREATED;
   }
 
-  /** 
-   * 로그인 메서드.  
+  /**
+   * 로그인 메서드.
    */
   @PostMapping("/login")
   public HttpStatus loginUser(@RequestBody UserDto user, HttpSession session) {
