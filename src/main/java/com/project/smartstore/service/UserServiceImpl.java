@@ -16,6 +16,8 @@ public class UserServiceImpl implements UserService {
 
   private final UserMapper userMapper;
 
+  public static String LOGIN_ID = "loginId";
+
   @Override
   public void joinUser(UserDto user) {
     if (isUsingId(user.getId())) {
@@ -45,8 +47,8 @@ public class UserServiceImpl implements UserService {
   public boolean loginUser(UserDto user, HttpSession session) {
     Optional<UserDto> result = findUserByIdAndPassword(user);
 
-    if (result.isPresent()) {
-      session.setAttribute("loginId", result.get().getId());
+    if (!result.isPresent()) {
+      session.setAttribute(LOGIN_ID, result.get().getId());
     }
 
     return result.isPresent();
