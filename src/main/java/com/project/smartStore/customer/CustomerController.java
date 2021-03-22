@@ -18,32 +18,33 @@ public class CustomerController {
   private final CustomerService customerService;
 
   @PostMapping
-  public boolean registerCustomer(@RequestBody CustomerDTO customerDTO){
-    return customerService.registerCustomer(customerDTO);
+  public void registerCustomer(@RequestBody CustomerDTO customerDTO) {
+    customerService.registerCustomer(customerDTO);
   }
 
   @GetMapping("/{id}")
-  public CustomerDTO getCustomerDetail(@PathVariable String id){
+  public CustomerDTO getCustomerDetail(@PathVariable String id) {
     return customerService.getCustomerDetailById(id);
   }
 
   @PutMapping("/pwd/{id}")
-  public boolean modifyCustomerPwd(@PathVariable String id, @RequestBody CustomerDTO customerDTO){
-    return customerService.modifiyPwd(id, customerDTO.getPassword());
+  public void modifyCustomerPwd(@PathVariable String id, @RequestBody CustomerDTO customerDTO) {
+    customerService.modifiyPwd(id, customerDTO.getPassword());
   }
 
   @PutMapping("/name/{id}")
-  public boolean modifyCustomerName(@PathVariable String id, @RequestBody CustomerDTO customerDTO){
-    return customerService.modifiyName(id, customerDTO.getName());
+  public void modifyCustomerName(@PathVariable String id, @RequestBody CustomerDTO customerDTO) {
+    customerService.modifiyName(id, customerDTO.getName());
   }
 
   @PutMapping("/phone-num/{id}")
-  public boolean modifyCustomerPhoneNum(@PathVariable String id, @RequestBody CustomerDTO customerDTO){
-    return customerService.modifiyPhoneNum(id, customerDTO.getPhoneNum());
+  public void modifyCustomerPhoneNum(@PathVariable String id,
+      @RequestBody CustomerDTO customerDTO) {
+    customerService.modifiyPhoneNum(id, customerDTO.getPhoneNum());
   }
 
   @DeleteMapping("/{id}")
-  public boolean deleteCustomer(@PathVariable String id){
-    return customerService.deleteCustomer(id);
+  public void deleteCustomer(@PathVariable String id) {
+    customerService.deleteCustomer(id);
   }
 }
