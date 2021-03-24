@@ -1,6 +1,5 @@
 package com.project.smartStore.customer;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -8,7 +7,7 @@ public interface CustomerMapper {
 
   CustomerDTO selectCustomerDetailById(String id);
 
-  void insertCustomer(CustomerDTO params) throws SQLIntegrityConstraintViolationException;
+  void insertCustomer(CustomerDTO params);
 
   void updateCustomerPwd(String id, String updatePwd);
 

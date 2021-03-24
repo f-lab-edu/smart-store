@@ -11,11 +11,7 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public void registerCustomer(CustomerDTO params) {
-    try {
       customerMapper.insertCustomer(params);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
   @Override
