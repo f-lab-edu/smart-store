@@ -9,12 +9,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper {
-  
+
   void insertUser(UserDto user);
-  
+
   boolean isUsingId(String id);
-  
-  Optional<UserDto> findUserByIdAndPassword(UserDto user);
-  
-  UserDto findUserById(UserDto user);
+
+  UserDto findUserByIdAndPassword(UserDto user);
 }
