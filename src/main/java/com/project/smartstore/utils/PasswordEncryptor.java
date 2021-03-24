@@ -3,6 +3,8 @@ package com.project.smartstore.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.project.smartstore.exception.EncryptException;
+
 
 public class PasswordEncryptor {
 
@@ -31,7 +33,7 @@ public class PasswordEncryptor {
 
       result = sb.toString();
     } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
+      throw new EncryptException("암호화 작업 중 예외가 발생했습니다.");
     }
 
     return result;
