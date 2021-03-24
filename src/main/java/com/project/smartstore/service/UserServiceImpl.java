@@ -8,7 +8,9 @@ import com.project.smartstore.utils.PasswordEncryptor;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 
 
 @Service
@@ -19,28 +21,37 @@ public class UserServiceImpl implements UserService {
 
   public static String LOGIN_ID = "loginId";
 
+  /*
+   * @Value는 properties의 프로퍼티를 읽을 수 있게 합니다.
+   * properties파일은 ${}이며, xml파일은 #{}을 사용합니다.
+   * 정적변수에는 injection이 불가하다는 점에 유의해야 합니다.
+   */
+  @Value("${salt}")
+  String salt;
+
+
   @Override
   public void joinUser(UserDto user) {
+
     if (isUsingId(user.getId())) {
       throw new DuplicatedIdException("동일한 아이디가 존재합니다. ");
     }
 
-    String salt = PasswordEncryptor.generateSalt();
-    String encryptedPassword = PasswordEncryptor.getEncrypt(user.getPassword(), salt);
-    user.setPassword(encryptedPassword);
+    user.setPassword(encryptPassword(user, salt));
 
     userMapper.insertUser(user);
   }
 
   @Override
   public boolean isUsingId(String userId) {
+
     return userMapper.isUsingId(userId);
   }
 
   @Override
   public Optional<UserDto> findUserByIdAndPassword(UserDto user) {
-    Optional<UserDto> result = Optional.ofNullable(userMapper.findUserById(user));
-    return userMapper.findUserByIdAndPassword(result.orElse(null));
+    user.setPassword(encryptPassword(user, salt));
+    return Optional.ofNullable(userMapper.findUserByIdAndPassword(user));
   }
 
 
@@ -59,4 +70,16 @@ public class UserServiceImpl implements UserService {
   public void logOutUser(UserDto user) {
 
   }
+
+  /*
+   * 암호화 메서드
+   * @param user
+   * @param salt
+   * @return String
+   */
+  private String encryptPassword(UserDto user, String salt) {
+    byte[] byteSalt = PasswordEncryptor.generateSalt(this.salt);
+    return PasswordEncryptor.getEncrypt(user.getPassword(), byteSalt);
+  }
+
 }
