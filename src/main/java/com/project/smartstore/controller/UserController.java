@@ -51,7 +51,6 @@ public class UserController {
    * 로그인 메서드.
    */
   @PostMapping("/login")
-  @ResponseStatus(HttpStatus.OK)
   public void loginUser(@RequestBody UserDto user, HttpSession session) {
 
     userService.loginUser(user, session);
