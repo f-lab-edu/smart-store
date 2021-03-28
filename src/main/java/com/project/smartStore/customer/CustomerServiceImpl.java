@@ -1,13 +1,13 @@
 package com.project.smartStore.customer;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-  @Autowired
-  private CustomerMapper customerMapper;
+  private final CustomerMapper customerMapper;
 
   @Override
   public void registerCustomer(CustomerDTO params) {
