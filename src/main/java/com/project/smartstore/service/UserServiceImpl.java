@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
    * properties파일은 ${}이며, xml파일은 #{}을 사용합니다.
    * 정적변수에는 injection이 불가하다는 점에 유의해야 합니다.
    */
-  @Value("${salt}")
-  String salt;
+  @Value("${encrypt.pw.salt}")
+  private String salt;
 
 
   @Override
