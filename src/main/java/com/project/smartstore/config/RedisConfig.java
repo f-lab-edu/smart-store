@@ -7,9 +7,15 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
-
+/**
+ * @EnableRedisHttpSession
+ * - @EnableRedisHttpSession은 Filter를 구현한 springSessionRepositoryFilter라는 이름으로 Spring Bean을 생성합니다.
+ *   springSessionRepositoryFilter은  Spring Session에서 지원하는 HttpSession구현을 대체하는 역할을합니다.
+ */
 @Configuration
+@EnableRedisHttpSession
 public class RedisConfig {
 
 	@Value("${redis.host}")
