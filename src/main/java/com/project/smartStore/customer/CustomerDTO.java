@@ -3,6 +3,7 @@ package com.project.smartStore.customer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class CustomerDTO {
 
   private String id;
+  @Setter
   private String password;
   private String name;
   private String phoneNum;

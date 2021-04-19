@@ -1,5 +1,7 @@
 package com.project.smartStore.customer;
 
+import com.project.smartStore.security.EncryptionConverter;
+import java.security.NoSuchAlgorithmException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +10,17 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl implements CustomerService {
 
   private final CustomerMapper customerMapper;
+  private final EncryptionConverter encryptionConverter;
 
   @Override
-  public void registerCustomer(CustomerDTO params) {
-      customerMapper.insertCustomer(params);
+  public void registerCustomer(CustomerDTO customer) {
+    try {
+      String encryptionPassword = encryptionConverter.ConvertSHA256WithSalt(customer.getPassword());
+      customer.setPassword(encryptionPassword);
+    } catch (NoSuchAlgorithmException e) {
+      throw new RuntimeException(e);
+    }
+    customerMapper.insertCustomer(customer);
   }
 
   @Override
