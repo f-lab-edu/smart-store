@@ -14,13 +14,10 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public void registerCustomer(CustomerDTO customer) {
-    try {
-      String encryptionPassword = encryptionConverter.ConvertSHA256WithSalt(customer.getPassword());
-      customer.setPassword(encryptionPassword);
-    } catch (NoSuchAlgorithmException e) {
-      throw new RuntimeException(e);
-    }
-    customerMapper.insertCustomer(customer);
+    String encryptionPassword = encryptionConverter.ConvertSHA256WithSalt(customer.getPassword());
+    CustomerDTO encryptionCustomerDto = new CustomerDTO(customer.getId(), encryptionPassword, customer.getName(),
+        customer.getPhoneNum());
+    customerMapper.insertCustomer(encryptionCustomerDto);
   }
 
   @Override
