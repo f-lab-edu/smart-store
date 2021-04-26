@@ -15,4 +15,6 @@ public interface UserMapper {
   boolean isUsingId(String id);
 
   UserDto findUserByIdAndPassword(UserDto user);
+
+  void updateUser(UserDto user);
 }

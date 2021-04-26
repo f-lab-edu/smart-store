@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -54,5 +55,13 @@ public class UserController {
   public void loginUser(@RequestBody UserDto user, HttpSession session) {
 
     userService.loginUser(user, session);
+  }
+
+  /**
+   * 회원정보 수정 메서드.
+   */
+  @PutMapping("/account")
+  public void updateUser(@RequestBody UserDto user) {
+    userService.updateUser(user);
   }
 }

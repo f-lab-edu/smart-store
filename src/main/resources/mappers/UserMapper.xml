@@ -25,4 +25,12 @@
       where id = #{id}
       AND PASSWORD = #{password}
     </select>
+
+    <update id="updateUser" parameterType="UserDto">
+      UPDATE MEMBER
+         SET NAME = #{name},
+             PHONE = #{phone},
+             TYPE = #{type}
+       WHERE ID = #{id}
+    </update>
 </mapper>

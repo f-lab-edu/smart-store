@@ -82,4 +82,8 @@ public class UserServiceImpl implements UserService {
     return PasswordEncryptor.getEncrypt(user.getPassword(), byteSalt);
   }
 
+  @Override
+  public void updateUser(UserDto user) {
+    userMapper.updateUser(user);
+  }
 }

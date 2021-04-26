@@ -19,4 +19,6 @@ public interface UserService {
 
   public void logOutUser(UserDto user);
 
+  public void updateUser(UserDto user);
+
 }
