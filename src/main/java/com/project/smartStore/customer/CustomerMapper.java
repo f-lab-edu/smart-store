@@ -7,6 +7,8 @@ public interface CustomerMapper {
 
   CustomerDTO selectCustomerDetailById(String id);
 
+  String selectCustomerPasswordById(String id);
+
   void insertCustomer(CustomerDTO params);
 
   void updateCustomerPwd(String id, String updatePwd);

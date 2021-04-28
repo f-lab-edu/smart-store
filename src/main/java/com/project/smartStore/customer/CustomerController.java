@@ -1,5 +1,6 @@
 package com.project.smartStore.customer;
 
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
 
   private final CustomerService customerService;
+
+  @PostMapping("/login")
+  public void LoginCustomer(@RequestBody LoginDTO loginDTO, HttpSession session){
+    customerService.loginCustomer(loginDTO, session);
+  }
 
   @PostMapping
   public void registerCustomer(@RequestBody CustomerDTO customerDTO) {

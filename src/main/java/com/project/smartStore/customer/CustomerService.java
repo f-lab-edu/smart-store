@@ -1,6 +1,12 @@
 package com.project.smartStore.customer;
 
+import javax.servlet.http.HttpSession;
+
 public interface CustomerService {
+
+  void loginCustomer(LoginDTO loginDTO, HttpSession session);
+
+  String getCustomerPassword(String id);
 
   void registerCustomer(CustomerDTO params);
 
