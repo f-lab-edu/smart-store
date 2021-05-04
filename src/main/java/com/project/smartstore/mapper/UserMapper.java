@@ -2,6 +2,9 @@ package com.project.smartstore.mapper;
 
 import com.project.smartstore.dto.UserDto;
 import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /*
@@ -17,4 +20,6 @@ public interface UserMapper {
   UserDto findUserByIdAndPassword(UserDto user);
 
   void updateUser(UserDto user);
+  
+  void deleteUser(UserDto user);
 }

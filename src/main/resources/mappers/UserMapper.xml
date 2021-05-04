@@ -9,28 +9,33 @@
     </insert>
 
     <select id="isUsingId" parameterType="String" resultType="boolean">
-        SELECT EXISTS
-        (SELECT id FROM member WHERE id = #{id})
+        SELECT EXISTS (SELECT id FROM member WHERE id = #{id})
     </select>
 
     <select id="findUserById" parameterType="UserDto" resultType="UserDto">
-      SELECT ID , PASSWORD
-      FROM member
-      where id = #{id}
+        SELECT ID , PASSWORD
+          FROM member
+         WHERE id = #{id}
     </select>
 
-    <select id="findUserByIdAndPassword" parameterType="UserDto"  resultType="UserDto" >
-      SELECT ID, PHONE, NAME, TYPE
-      FROM member
-      where id = #{id}
-      AND PASSWORD = #{password}
+    <select id="findUserByIdAndPassword" parameterType="UserDto" resultType="UserDto">
+        SELECT ID, PHONE, NAME, TYPE
+          FROM MEMBER
+         WHERE ID = #{id}
+           AND PASSWORD = #{password}
     </select>
 
     <update id="updateUser" parameterType="UserDto">
-      UPDATE MEMBER
-         SET NAME = #{name},
-             PHONE = #{phone},
-             TYPE = #{type}
-       WHERE ID = #{id}
+        UPDATE MEMBER
+           SET NAME = #{name},
+               PHONE = #{phone},
+               TYPE = #{type}
+         WHERE ID = #{id}
     </update>
+
+    <delete id="deleteUser" parameterType="UserDto">
+        DELETE FROM MEMBER
+         WHERE ID = #{id}
+           AND PASSWORD = #{password} 
+    </delete>
 </mapper>
