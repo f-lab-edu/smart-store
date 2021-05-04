@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
-
+/**
+ * UserService 구현 클래스.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -36,9 +38,7 @@ public class UserServiceImpl implements UserService {
     if (isUsingId(user.getId())) {
       throw new DuplicatedIdException("동일한 아이디가 존재합니다. ");
     }
-
-    user.setPassword(encryptPassword(user, salt));
-
+    encryptPassword(user);
     userMapper.insertUser(user);
   }
 
@@ -50,10 +50,9 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Optional<UserDto> findUserByIdAndPassword(UserDto user) {
-    user.setPassword(encryptPassword(user, salt));
+    encryptPassword(user);
     return Optional.ofNullable(userMapper.findUserByIdAndPassword(user));
   }
-
 
   @Override
   public void loginUser(UserDto user, HttpSession session) {
@@ -67,23 +66,29 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void logOutUser(UserDto user) {
-
-  }
-
-  /*
-   * 암호화 메서드
-   * @param user
-   * @param salt
-   * @return String
-   */
-  private String encryptPassword(UserDto user, String salt) {
-    byte[] byteSalt = PasswordEncryptor.generateSalt(this.salt);
-    return PasswordEncryptor.getEncrypt(user.getPassword(), byteSalt);
+  public void logOutUser(UserDto user, HttpSession session) {
+    session.invalidate();
   }
 
   @Override
   public void updateUser(UserDto user) {
     userMapper.updateUser(user);
   }
+  
+  @Override
+  public void deleteUser(UserDto user, HttpSession session) {
+    encryptPassword(user);
+    userMapper.deleteUser(user);
+    session.invalidate();
+  }
+
+  /*
+   * 암호화 메서드
+   * @param user
+   */
+  private void encryptPassword(UserDto user) {
+    byte[] byteSalt = PasswordEncryptor.generateSalt(this.salt);
+    user.setPassword(PasswordEncryptor.getEncrypt(user.getPassword(), byteSalt));
+  }  
+  
 }

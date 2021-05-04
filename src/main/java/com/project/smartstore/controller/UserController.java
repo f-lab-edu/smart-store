@@ -1,10 +1,10 @@
 package com.project.smartstore.controller;
 
-import com.project.smartstore.dto.UserDto;
-import com.project.smartstore.service.UserService;
 import javax.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.smartstore.dto.UserDto;
+import com.project.smartstore.service.UserService;
 
-/*
- *
+import lombok.RequiredArgsConstructor;
+
+
+/**
  * @RestController : @Controller와 @ResponseBody가 합쳐진 기능의 어노테이션입니다.
  *     또한 @RequestMapping 메서드가 @ResponseBody를 수행한다는 의미도 있습니다.
  *
@@ -28,8 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @ResponseStatus : 컨트롤러의 응답상태를 지정하는 어노테이션입니다. code와  reason의 두가지 인자를 사용할 수 있는데,
  *     code를 HttpStatus code로 설정할 수 있습니다. reason을 설정하면 Spring은 HttpServletResponse.sendError()를 호출하고
  *     클라이언트에 HTML 오류 페이지를 전송하기 때문에 REST 엔드 포인트에 적합하지 않습니다.
- *     또한 Spring은 표시된 메소드가 성공적으로 완료 될 때만 @ResponseStatus를 사용 합니다.(Exception 을 던지지 않고)
- *
+ *     또한 Spring은 표시된 메소드가 성공적으로 완료 될 때만 @ResponseStatus를 사용 합니다.(Exception 을 던지지 않고).
  */
 @RestController
 @RequestMapping("/users")
@@ -63,5 +66,21 @@ public class UserController {
   @PutMapping("/account")
   public void updateUser(@RequestBody UserDto user) {
     userService.updateUser(user);
+  }
+  
+  /**
+   * 회원삭제(탈퇴) 메서드.
+   */
+  @DeleteMapping("/account")
+  public void deleteUser(@RequestBody UserDto user, HttpSession session) {
+    userService.deleteUser(user, session);
+  }
+  
+  /**
+   * 로그아웃 메서드.
+   */
+  @GetMapping("/logOut")
+  public void logOutUser(@RequestBody UserDto user, HttpSession session) {
+    userService.logOutUser(user, session);
   }
 }
