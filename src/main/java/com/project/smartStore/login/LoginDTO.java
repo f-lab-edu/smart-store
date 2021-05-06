@@ -1,4 +1,4 @@
-package com.project.smartStore.customer;
+package com.project.smartStore.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

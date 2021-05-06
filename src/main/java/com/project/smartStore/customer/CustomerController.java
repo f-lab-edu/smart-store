@@ -1,5 +1,6 @@
 package com.project.smartStore.customer;
 
+import com.project.smartStore.login.LoginDTO;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
