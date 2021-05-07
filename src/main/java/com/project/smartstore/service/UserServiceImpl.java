@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   private final UserMapper userMapper;
-
   public static String LOGIN_ID = "loginId";
 
   /*
@@ -52,22 +51,6 @@ public class UserServiceImpl implements UserService {
   public Optional<UserDto> findUserByIdAndPassword(UserDto user) {
     encryptPassword(user);
     return Optional.ofNullable(userMapper.findUserByIdAndPassword(user));
-  }
-
-  @Override
-  public void loginUser(UserDto user, HttpSession session) {
-    Optional<UserDto> result = findUserByIdAndPassword(user);
-
-    if (!result.isPresent()) {
-      throw new NoneExistentUserException("존재하지 않는 사용자입니다.");
-    }
-
-    session.setAttribute(LOGIN_ID, result.get().getId());
-  }
-
-  @Override
-  public void logOutUser(UserDto user, HttpSession session) {
-    session.invalidate();
   }
 
   @Override

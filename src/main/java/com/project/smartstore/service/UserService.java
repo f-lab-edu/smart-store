@@ -13,11 +13,7 @@ public interface UserService {
 
   public boolean isUsingId(String userId);
 
-  public void loginUser(UserDto user, HttpSession session);
-
   public Optional<UserDto> findUserByIdAndPassword(UserDto user);
-
-  public void logOutUser(UserDto user, HttpSession session);
 
   public void updateUser(UserDto user);
   

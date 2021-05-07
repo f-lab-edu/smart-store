@@ -1,7 +1,9 @@
 package com.project.smartstore.controller;
 
+
 import com.project.smartstore.annotation.LoginCheck;
 import com.project.smartstore.dto.UserDto;
+import com.project.smartstore.service.SessionLoginService;
 import com.project.smartstore.service.UserService;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +40,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
+  private final SessionLoginService sessionLoginService;
 
   /**
    * 회원가입 메서드.
@@ -55,7 +58,7 @@ public class UserController {
   @PostMapping("/login")
   public void loginUser(@RequestBody UserDto user, HttpSession session) {
 
-    userService.loginUser(user, session);
+    sessionLoginService.loginUser(user, session);
   }
 
   /**
@@ -82,6 +85,6 @@ public class UserController {
   @LoginCheck
   @GetMapping("/logOut")
   public void logOutUser(@RequestBody UserDto user, HttpSession session) {
-    userService.logOutUser(user, session);
+    sessionLoginService.logOutUser(user, session);
   }
 }
