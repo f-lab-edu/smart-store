@@ -1,7 +1,9 @@
 package com.project.smartStore.login;
 
 import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SessionLoginService {
 
   private final String LOGIN_ATTRIBUTE = "LOGIN";
