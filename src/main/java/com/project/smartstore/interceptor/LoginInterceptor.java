@@ -10,9 +10,6 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 
-/**
- * 로그인체크 인터셉터.
- */
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 

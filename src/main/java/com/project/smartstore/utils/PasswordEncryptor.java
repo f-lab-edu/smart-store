@@ -8,9 +8,6 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordEncryptor {
 
-  /**
-   * 비밀번호 암호화 메서드.
-   */
   public static String encryptPassword(String text, String salt) {
     String result = "";
     byte[] byteSalt = generateSalt(salt);
@@ -41,9 +38,6 @@ public class PasswordEncryptor {
   }
 
 
-  /**
-   * salt를 생성하는 메소드.
-   */
   public static byte[] generateSalt(String salt) {
 
     return salt.getBytes();

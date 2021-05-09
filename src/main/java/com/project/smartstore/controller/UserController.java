@@ -45,9 +45,6 @@ public class UserController {
   private final UserService userService;
   private final LoginService sessionLoginService;
 
-  /**
-   * 회원가입 메서드.
-   */
   @PostMapping("/join")
   @ResponseStatus(HttpStatus.CREATED)
   public void joinUser(@RequestBody UserDto user) {
@@ -55,36 +52,24 @@ public class UserController {
     userService.joinUser(user);
   }
 
-  /**
-   * 로그인 메서드.
-   */
   @PostMapping("/login")
   public void login(@RequestBody UserDto user, HttpSession session) {
 
     sessionLoginService.login(user, session);
   }
 
-  /**
-   * 회원정보 수정 메서드.
-   */
   @LoginCheck
   @PutMapping("/account")
   public void updateUser(@RequestBody UserDto user) {
     userService.updateUser(user);
   }
 
-  /**
-   * 회원삭제(탈퇴) 메서드.
-   */
   @LoginCheck
   @DeleteMapping("/account")
   public void deleteUser(@RequestBody UserDto user, HttpSession session) {
     userService.deleteUser(user, session);
   }
 
-  /**
-   * 로그아웃 메서드.
-   */
   @LoginCheck
   @GetMapping("/logOut")
   public void logOut(@RequestBody UserDto user, HttpSession session) {

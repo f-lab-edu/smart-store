@@ -11,9 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
-/**
- * UserService 구현 클래스.
- */
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {

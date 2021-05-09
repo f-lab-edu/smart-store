@@ -8,9 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
-/**
- *  로그인 서비스 구현체.
- */
 @Service
 @RequiredArgsConstructor
 public class SessionLoginService implements LoginService {
