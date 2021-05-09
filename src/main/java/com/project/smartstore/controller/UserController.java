@@ -1,12 +1,8 @@
 package com.project.smartstore.controller;
 
 
-import com.project.smartstore.annotation.LoginCheck;
-import com.project.smartstore.dto.UserDto;
-import com.project.smartstore.service.SessionLoginService;
-import com.project.smartstore.service.UserService;
 import javax.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.project.smartstore.annotation.LoginCheck;
+import com.project.smartstore.dto.UserDto;
+import com.project.smartstore.service.LoginService;
+import com.project.smartstore.service.UserService;
+
+import lombok.RequiredArgsConstructor;
 
 
 /**
@@ -40,7 +43,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
-  private final SessionLoginService sessionLoginService;
+  private final LoginService sessionLoginService;
 
   /**
    * 회원가입 메서드.
@@ -69,7 +72,7 @@ public class UserController {
   public void updateUser(@RequestBody UserDto user) {
     userService.updateUser(user);
   }
-  
+
   /**
    * 회원삭제(탈퇴) 메서드.
    */
@@ -78,7 +81,7 @@ public class UserController {
   public void deleteUser(@RequestBody UserDto user, HttpSession session) {
     userService.deleteUser(user, session);
   }
-  
+
   /**
    * 로그아웃 메서드.
    */
