@@ -19,18 +19,17 @@ public class LoginInterceptor implements HandlerInterceptor {
   public static String LOGIN_ID = "loginId";
 
   @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, 
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
       Object handler) throws Exception {
-    
+
     HttpSession session = request.getSession();
     String loginId = (String) session.getAttribute(LOGIN_ID);
     HandlerMethod handlerMethod = (HandlerMethod) handler;
-    LoginCheck ddd = handlerMethod.getMethodAnnotation(LoginCheck.class);
-    
+
     if (handlerMethod.hasMethodAnnotation(LoginCheck.class) && loginId == null) {
       throw new UnAuthenticatedAccessException("인가되지 않은 접근입니다.");
     }
-    
+
     return true;
   }
 }
