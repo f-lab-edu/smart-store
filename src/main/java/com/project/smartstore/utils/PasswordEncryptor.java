@@ -11,14 +11,15 @@ public class PasswordEncryptor {
   /**
    * 비밀번호 암호화 메서드.
    */
-  public static String getEncrypt(String text, byte[] salt) {
+  public static String encryptPassword(String text, String salt) {
     String result = "";
+    byte[] byteSalt = generateSalt(salt);
 
     byte[] a = text.getBytes();
-    byte[] bytes = new byte[a.length + salt.length];
+    byte[] bytes = new byte[a.length + byteSalt.length];
 
     System.arraycopy(a, 0, bytes, 0, a.length);
-    System.arraycopy(salt, 0, bytes, a.length, salt.length);
+    System.arraycopy(byteSalt, 0, bytes, a.length, byteSalt.length);
 
     try {
       MessageDigest md = MessageDigest.getInstance("SHA-256");
