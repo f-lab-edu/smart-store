@@ -59,9 +59,9 @@ public class UserController {
    * 로그인 메서드.
    */
   @PostMapping("/login")
-  public void loginUser(@RequestBody UserDto user, HttpSession session) {
+  public void login(@RequestBody UserDto user, HttpSession session) {
 
-    sessionLoginService.loginUser(user, session);
+    sessionLoginService.login(user, session);
   }
 
   /**
@@ -87,7 +87,7 @@ public class UserController {
    */
   @LoginCheck
   @GetMapping("/logOut")
-  public void logOutUser(@RequestBody UserDto user, HttpSession session) {
-    sessionLoginService.logOutUser(user, session);
+  public void logOut(@RequestBody UserDto user, HttpSession session) {
+    sessionLoginService.logOut(user, session);
   }
 }

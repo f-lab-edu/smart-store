@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SessionLoginService implements LoginService {
-  
+
   private final UserServiceImpl userService;
-  
+
   @Override
-  public void loginUser(UserDto user, HttpSession session) {
+  public void login(UserDto user, HttpSession session) {
     Optional<UserDto> result = userService.findUserByIdAndPassword(user);
 
     if (!result.isPresent()) {
@@ -29,7 +29,7 @@ public class SessionLoginService implements LoginService {
   }
 
   @Override
-  public void logOutUser(UserDto user, HttpSession session) {
+  public void logOut(UserDto user, HttpSession session) {
     session.invalidate();
   }
 }
