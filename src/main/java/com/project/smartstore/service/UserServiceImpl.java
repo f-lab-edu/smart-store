@@ -2,7 +2,6 @@ package com.project.smartstore.service;
 
 import com.project.smartstore.dto.UserDto;
 import com.project.smartstore.exception.DuplicatedIdException;
-import com.project.smartstore.exception.NoneExistentUserException;
 import com.project.smartstore.mapper.UserMapper;
 import com.project.smartstore.utils.PasswordEncryptor;
 import java.util.Optional;
@@ -33,45 +32,47 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void joinUser(UserDto user) {
-
     if (isUsingId(user.getId())) {
       throw new DuplicatedIdException("동일한 아이디가 존재합니다. ");
     }
-    encryptPassword(user);
-    userMapper.insertUser(user);
+    UserDto encryptedUser = encryptUser(user);
+    userMapper.insertUser(encryptedUser);
   }
 
   @Override
   public boolean isUsingId(String userId) {
-
     return userMapper.isUsingId(userId);
   }
 
   @Override
   public Optional<UserDto> findUserByIdAndPassword(UserDto user) {
-    encryptPassword(user);
-    return Optional.ofNullable(userMapper.findUserByIdAndPassword(user));
+    UserDto encryptedUser = encryptUser(user);
+    return Optional.ofNullable(userMapper.findUserByIdAndPassword(encryptedUser));
   }
 
   @Override
   public void updateUser(UserDto user) {
     userMapper.updateUser(user);
   }
-  
+
   @Override
   public void deleteUser(UserDto user, HttpSession session) {
-    encryptPassword(user);
-    userMapper.deleteUser(user);
+    UserDto encryptedUser = encryptUser(user);
+    userMapper.deleteUser(encryptedUser);
     session.invalidate();
   }
 
-  /*
-   * 암호화 메서드
-   * @param user
-   */
-  private void encryptPassword(UserDto user) {
-    byte[] byteSalt = PasswordEncryptor.generateSalt(this.salt);
-    user.setPassword(PasswordEncryptor.getEncrypt(user.getPassword(), byteSalt));
-  }  
-  
+  public UserDto encryptUser(UserDto user) {
+    String encryptedPassword = PasswordEncryptor.encryptPassword(user.getPassword(), salt);
+
+    UserDto encryptedUser = UserDto.builder()
+        .id(user.getId())
+        .password(encryptedPassword)
+        .name(user.getName())
+        .phone(user.getPhone())
+        .type("customer")
+        .build();
+
+    return encryptedUser;
+  }
 }
