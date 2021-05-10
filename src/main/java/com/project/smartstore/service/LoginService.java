@@ -7,5 +7,5 @@ public interface LoginService {
 
   public void login(UserDto user, HttpSession session);
 
-  public void logOut(UserDto user, HttpSession session);
+  public void logout(UserDto user, HttpSession session);
 }

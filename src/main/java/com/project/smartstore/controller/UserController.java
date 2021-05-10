@@ -48,13 +48,11 @@ public class UserController {
   @PostMapping("/join")
   @ResponseStatus(HttpStatus.CREATED)
   public void joinUser(@RequestBody UserDto user) {
-
     userService.joinUser(user);
   }
 
   @PostMapping("/login")
   public void login(@RequestBody UserDto user, HttpSession session) {
-
     sessionLoginService.login(user, session);
   }
 
@@ -71,8 +69,8 @@ public class UserController {
   }
 
   @LoginCheck
-  @GetMapping("/logOut")
-  public void logOut(@RequestBody UserDto user, HttpSession session) {
-    sessionLoginService.logOut(user, session);
+  @GetMapping("/logout")
+  public void logout(@RequestBody UserDto user, HttpSession session) {
+    sessionLoginService.logout(user, session);
   }
 }

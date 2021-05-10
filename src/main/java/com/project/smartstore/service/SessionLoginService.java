@@ -26,7 +26,7 @@ public class SessionLoginService implements LoginService {
   }
 
   @Override
-  public void logOut(UserDto user, HttpSession session) {
+  public void logout(UserDto user, HttpSession session) {
     session.invalidate();
   }
 }
