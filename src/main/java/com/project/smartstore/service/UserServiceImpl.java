@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     session.invalidate();
   }
 
-  public UserDto encryptUser(UserDto user) {
+  private UserDto encryptUser(UserDto user) {
     String encryptedPassword = PasswordEncryptor.encryptPassword(user.getPassword(), salt);
 
     UserDto encryptedUser = UserDto.builder()
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
         .password(encryptedPassword)
         .name(user.getName())
         .phone(user.getPhone())
-        .type("customer")
+        .type(user.getType())
         .build();
 
     return encryptedUser;
