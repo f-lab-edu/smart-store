@@ -21,7 +21,7 @@
 * 스토어는 중개수수료를 통해 수익을 얻는다.
 
 ### 협업
-* 깃 브랜치 전략
+* [git branch 전략](https://github.com/f-lab-edu/smart-store/wiki/git-branch-%EC%A0%84%EB%9E%B5)
 * 커밋 메세지
 * 깃허브 프로젝트 칸반보드 규칙
 
