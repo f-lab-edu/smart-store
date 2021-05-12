@@ -19,7 +19,7 @@
 ### 협업
 * [git branch 전략](https://github.com/f-lab-edu/smart-store/wiki/git-branch-%EC%A0%84%EB%9E%B5)
 * [커밋 메세지 규칙](https://github.com/f-lab-edu/smart-store/wiki/%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%84%B8%EC%A7%80-%EA%B7%9C%EC%B9%99)
-* 깃허브 프로젝트 칸반보드 규칙
+* [깃허브 프로젝트 칸반보드 규칙](https://github.com/f-lab-edu/smart-store/wiki/%EA%B9%83%ED%97%88%EB%B8%8C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%B9%B8%EB%B0%98%EB%B3%B4%EB%93%9C-%EA%B7%9C%EC%B9%99)
 
 ### 판매자 기능
 작업중
