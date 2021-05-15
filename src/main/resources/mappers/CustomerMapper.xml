@@ -7,33 +7,30 @@
   <insert id="insertCustomer"
     parameterType="com.project.smartStore.customer.CustomerDTO">
     INSERT INTO customer (id, password, name, phone_num)
-        values
-        (#{id}, #{password}, #{name}, #{phoneNum})
+    values (#{id}, #{password}, #{name}, #{phoneNum})
   </insert>
 
   <select id="selectCustomerDetailById"
     parameterType="String" resultType="com.project.smartStore.customer.CustomerDTO">
-    SELECT id, name, phone_num as phoneNum FROM customer where id = #{id};
+    SELECT id, name, phone_num as phoneNum
+    FROM customer
+    where id = #{id};
   </select>
 
-  <update id="updateCustomerPwd"
-    parameterType="String" >
-    UPDATE customer SET password = #{updatePwd} WHERE id = #{id};
-  </update>
-
-  <update id="updateCustomerName"
-    parameterType="String" >
-    UPDATE customer SET name = #{updateName} WHERE id = #{id};
-  </update>
-
-  <update id="updateCustomerPhoneNum"
-    parameterType="String" >
-    UPDATE customer SET phone_num = #{updatePhoneNum} WHERE id = #{id};
+  <update id="updateCustomerDetail"
+    parameterType="com.project.smartStore.customer.CustomerDTO">
+    UPDATE customer
+    SET password  = #{password},
+        name      = #{name},
+        phone_num = #{phoneNum}
+    WHERE id = #{id};
   </update>
 
   <delete id="deleteCustomerById"
     parameterType="String">
-    DELETE FROM customer WHERE id = #{id};
+    DELETE
+    FROM customer
+    WHERE id = #{id};
   </delete>
 
 </mapper>

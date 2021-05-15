@@ -6,11 +6,7 @@ public interface CustomerService {
 
   CustomerDTO getCustomerDetailById(String id);
 
-  void modifiyPwd(String email, String pwd);
-
-  void modifiyName(String email, String name);
-
-  void modifiyPhoneNum(String email, String phoneNum);
+  void modifiyCustomerDetail(CustomerDTO customerDTO);
 
   void deleteCustomer(String email);
 }
