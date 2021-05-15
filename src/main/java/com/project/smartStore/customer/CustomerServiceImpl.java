@@ -1,10 +1,6 @@
 package com.project.smartStore.customer;
 
-import com.project.smartStore.login.LoginDTO;
-import com.project.smartStore.login.SessionLoginService;
 import com.project.smartStore.security.EncryptionConverter;
-import java.security.NoSuchAlgorithmException;
-import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,34 +12,10 @@ public class CustomerServiceImpl implements CustomerService {
 
   private final EncryptionConverter encryptionConverter;
 
-  private final SessionLoginService sessionLoginService;
-
-  @Override
-  public void loginCustomer(LoginDTO loginDTO, HttpSession session) {
-    try {
-      String currentPassword = encryptionConverter.ConvertSHA256WithSalt(loginDTO.getPassword());
-      String storedPassword = getCustomerPassword(loginDTO.getId());
-      if (currentPassword.equals(storedPassword)) {
-        sessionLoginService.login(session, loginDTO.getId());
-      }
-    } catch (NoSuchAlgorithmException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  @Override
-  public String getCustomerPassword(String id) {
-    return customerMapper.selectCustomerPasswordById(id);
-  }
-
   @Override
   public void registerCustomer(CustomerDTO customer) {
-    try {
-      String encryptionPassword = encryptionConverter.ConvertSHA256WithSalt(customer.getPassword());
-      customer.setPassword(encryptionPassword);
-    } catch (NoSuchAlgorithmException e) {
-      throw new RuntimeException(e);
-    }
+    String encryptionPassword = encryptionConverter.ConvertSHA256WithSalt(customer.getPassword());
+    customer.setPassword(encryptionPassword);
     customerMapper.insertCustomer(customer);
   }
 

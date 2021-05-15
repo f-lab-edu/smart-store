@@ -16,19 +16,24 @@ public class EncryptionConverter {
   @Value("${enc.salt}")
   public String salt;
 
-  public String ConvertSHA256WithSalt(String inputString) throws NoSuchAlgorithmException {
+  public String ConvertSHA256WithSalt(String inputString) {
     String inputWithSalt = inputString + salt;
-    MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-    byte[] bytes = messageDigest.digest(inputWithSalt.getBytes(StandardCharsets.UTF_8));
-    return bytesToHex(bytes);
+    try {
+      MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+      byte[] bytes = messageDigest.digest(inputWithSalt.getBytes(StandardCharsets.UTF_8));
+      return bytesToHex(bytes);
+    } catch (NoSuchAlgorithmException e) {
+      throw new RuntimeException();
+    }
   }
 
   private String bytesToHex(byte[] hash) {
     StringBuilder hexString = new StringBuilder(2 * hash.length);
     for (byte h : hash) {
       String hex = Integer.toHexString(0xff & h);
-      if (hex.length() == 1)
+      if (hex.length() == 1) {
         hexString.append('0');
+      }
       hexString.append(hex);
     }
     return hexString.toString();
