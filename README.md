@@ -1,5 +1,6 @@
-![스토어](https://user-images.githubusercontent.com/37571052/109776667-30032700-7c46-11eb-8c06-002fdf5e7784.jpg)
-
+<p style="text-align:center;">
+  <img src="https://user-images.githubusercontent.com/37571052/109776667-30032700-7c46-11eb-8c06-002fdf5e7784.jpg" alt="스토어" style="max-width:100%;">
+</p>
 # smart-store
 누구나 입점할 수 있는 오픈마켓 서비스
 
