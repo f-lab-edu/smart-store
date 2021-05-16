@@ -23,7 +23,7 @@ public class EncryptionConverter {
       byte[] bytes = messageDigest.digest(inputWithSalt.getBytes(StandardCharsets.UTF_8));
       return bytesToHex(bytes);
     } catch (NoSuchAlgorithmException e) {
-      throw new RuntimeException();
+      throw new IllegalAlgorithmException(e.getMessage(), e.getCause());
     }
   }
 
