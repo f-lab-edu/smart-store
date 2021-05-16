@@ -25,6 +25,11 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   @Override
+  public String getCustomerPassword(String id) {
+    return customerMapper.selectCustomerPasswordById(id);
+  }
+
+  @Override
   public void modifiyPwd(String id, String pwd) {
     customerMapper.updateCustomerPwd(id, pwd);
   }

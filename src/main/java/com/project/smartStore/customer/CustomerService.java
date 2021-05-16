@@ -6,6 +6,8 @@ public interface CustomerService {
 
   CustomerDTO getCustomerDetailById(String id);
 
+  String getCustomerPassword(String id);
+
   void modifiyPwd(String email, String pwd);
 
   void modifiyName(String email, String name);
