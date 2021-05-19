@@ -68,6 +68,8 @@ public class UserServiceImpl implements UserService {
         .name(user.getName())
         .phone(user.getPhone())
         .type(user.getType())
+        .address1(user.getAddress1())
+        .address2(user.getAddress2())
         .build();
 
     return encryptedUser;

@@ -15,5 +15,10 @@ public class UserDto {
   private String name;
   private String phone;
   private String type; // customer , seller
+  private String address1;
+  private String address2;
+  private String regDt;
+  private String modiDt;
+
 
 }
