@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.smartstore.mapper.StoreMapper">
+    <insert id="createStore" parameterType="StoreDto">
+        insert into store(store_name, category_id, store_address1, store_address2, store_phone, owner_id, biz_number, reg_dt)
+        values(#{storeName}, #{categoryId}, #{storeAddress1}, #{storeAddress2}, #{storePhone}, #{ownerId}, #{bizNumber}, current_timestamp)
+    </insert>
+
+    <select id="selectStoreList" parameterType="String" resultType="StoreDto">
+        select  store_id  storeId,
+                store_name storeName,
+                category_id categoryId,
+                store_address1 storeAddress1,
+                store_address2 storeAddress2,
+                store_phone storePhone,
+                owner_id ownerId,
+                biz_number bizNumber,
+                reg_dt regDt,
+                modi_dt modiDt
+        from store
+       where owner_id = #{ownerId}
+    </select>
+</mapper>
