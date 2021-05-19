@@ -4,8 +4,8 @@
 <mapper namespace="com.project.smartstore.mapper.UserMapper">
 
     <insert id="insertUser" parameterType="UserDto">
-        INSERT INTO member(id, password, name, phone, type)
-        VALUES(#{id}, #{password}, #{name}, #{phone}, #{type})
+        INSERT INTO member(id, password, name, phone, type, address1, address2, reg_dt)
+        VALUES(#{id}, #{password}, #{name}, #{phone}, #{type}, #{address1}, #{address2}, current_timestamp)
     </insert>
 
     <select id="isUsingId" parameterType="String" resultType="boolean">
@@ -34,6 +34,6 @@
 
     <delete id="deleteUser" parameterType="UserDto">
         DELETE FROM MEMBER
-        WHERE ID = #{id} AND PASSWORD = #{password} 
+        WHERE ID = #{id} AND PASSWORD = #{password}
     </delete>
 </mapper>
