@@ -29,4 +29,9 @@ public class SessionLoginService implements LoginService {
   public void logout(UserDto user, HttpSession session) {
     session.invalidate();
   }
+
+  @Override
+  public String getLoginId(HttpSession session) {
+    return (String) session.getAttribute(UserServiceImpl.LOGIN_ID);
+  }
 }

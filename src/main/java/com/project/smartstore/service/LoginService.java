@@ -5,7 +5,9 @@ import javax.servlet.http.HttpSession;
 
 public interface LoginService {
 
-  public void login(UserDto user, HttpSession session);
+  void login(UserDto user, HttpSession session);
 
-  public void logout(UserDto user, HttpSession session);
+  void logout(UserDto user, HttpSession session);
+
+  String getLoginId(HttpSession session);
 }
