@@ -1,7 +1,9 @@
 package com.project.smartstore.service;
 
+
 import com.project.smartstore.dto.UserDto;
 import com.project.smartstore.exception.NoneExistentUserException;
+import com.project.smartstore.exception.UnAuthenticatedAccessException;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class SessionLoginService implements LoginService {
 
   private final UserServiceImpl userService;
+  public static String LOGIN_ID = "loginId";
 
   @Override
   public void login(UserDto user, HttpSession session) {
@@ -22,7 +25,7 @@ public class SessionLoginService implements LoginService {
       throw new NoneExistentUserException("존재하지 않는 사용자입니다.");
     }
 
-    session.setAttribute(UserServiceImpl.LOGIN_ID, result.get().getId());
+    session.setAttribute(LOGIN_ID, result.get().getId());
   }
 
   @Override
@@ -32,6 +35,11 @@ public class SessionLoginService implements LoginService {
 
   @Override
   public String getLoginId(HttpSession session) {
-    return (String) session.getAttribute(UserServiceImpl.LOGIN_ID);
+    String loginId = (String) session.getAttribute(LOGIN_ID);
+
+    if (loginId == null) {
+      throw new UnAuthenticatedAccessException();
+    }
+    return loginId;
   }
 }
