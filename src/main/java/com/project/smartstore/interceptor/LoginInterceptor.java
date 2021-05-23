@@ -2,6 +2,7 @@ package com.project.smartstore.interceptor;
 
 import com.project.smartstore.annotation.LoginCheck;
 import com.project.smartstore.exception.UnAuthenticatedAccessException;
+import com.project.smartstore.service.SessionLoginService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,14 +14,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
-  public static String LOGIN_ID = "loginId";
-
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
       Object handler) throws Exception {
 
     HttpSession session = request.getSession();
-    String loginId = (String) session.getAttribute(LOGIN_ID);
+    String loginId = (String) session.getAttribute(SessionLoginService.LOGIN_ID);
     HandlerMethod handlerMethod = (HandlerMethod) handler;
 
     if (handlerMethod.hasMethodAnnotation(LoginCheck.class) && loginId == null) {

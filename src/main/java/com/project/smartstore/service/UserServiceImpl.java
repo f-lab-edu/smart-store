@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   private final UserMapper userMapper;
-  public static String LOGIN_ID = "loginId";
 
   /*
    * @Value는 properties의 프로퍼티를 읽을 수 있게 합니다.
