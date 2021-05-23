@@ -3,12 +3,12 @@
 
 <mapper namespace="com.project.smartstore.mapper.StoreMapper">
     <insert id="createStore" parameterType="StoreDto">
-        insert into store(store_name, category_id, store_address1, store_address2, store_phone, owner_id, biz_number, reg_dt)
-        values(#{storeName}, #{categoryId}, #{storeAddress1}, #{storeAddress2}, #{storePhone}, #{ownerId}, #{bizNumber}, current_timestamp)
+        INSERT INTO store(store_name, category_id, store_address1, store_address2, store_phone, owner_id, biz_number, reg_dt)
+        VALUES(#{storeName}, #{categoryId}, #{storeAddress1}, #{storeAddress2}, #{storePhone}, #{ownerId}, #{bizNumber}, current_timestamp)
     </insert>
 
     <select id="selectStoreList" parameterType="String" resultType="StoreDto">
-        select  store_id  storeId,
+        SELECT  store_id  storeId,
                 store_name storeName,
                 category_id categoryId,
                 store_address1 storeAddress1,
@@ -18,7 +18,7 @@
                 biz_number bizNumber,
                 reg_dt regDt,
                 modi_dt modiDt
-        from store
-       where owner_id = #{ownerId}
+        FROM store
+       WHERE owner_id = #{ownerId}
     </select>
 </mapper>

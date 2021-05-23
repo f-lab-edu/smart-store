@@ -13,27 +13,27 @@
     </select>
 
     <select id="findUserById" parameterType="UserDto" resultType="UserDto">
-        SELECT ID , PASSWORD
+        SELECT id , password
         FROM member
         WHERE id = #{id}
     </select>
 
     <select id="findUserByIdAndPassword" parameterType="UserDto" resultType="UserDto">
-        SELECT ID, PHONE, NAME, TYPE
-        FROM MEMBER
-        WHERE ID = #{id} AND PASSWORD = #{password}
+        SELECT id, phone, name, type
+        FROM member
+        WHERE id = #{id} AND password = #{password}
     </select>
 
     <update id="updateUser" parameterType="UserDto">
-        UPDATE MEMBER
-        SET NAME = #{name},
-        PHONE = #{phone},
-        TYPE = #{type}
-        WHERE ID = #{id}
+        UPDATE member
+        SET name = #{name},
+        phone = #{phone},
+        type = #{type}
+        WHERE id = #{id}
     </update>
 
     <delete id="deleteUser" parameterType="UserDto">
-        DELETE FROM MEMBER
-        WHERE ID = #{id} AND PASSWORD = #{password}
+        DELETE FROM member
+        WHERE id = #{id} AND password = #{password}
     </delete>
 </mapper>
