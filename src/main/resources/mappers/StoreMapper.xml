@@ -19,6 +19,40 @@
                 reg_dt regDt,
                 modi_dt modiDt
         FROM store
-       WHERE owner_id = #{ownerId}
+        WHERE owner_id = #{ownerId}
     </select>
+
+    <select id="selectStore" parameterType="String" resultType="StoreDto">
+        SELECT  store_id  storeId,
+                store_name storeName,
+                category_id categoryId,
+                store_address1 storeAddress1,
+                store_address2 storeAddress2,
+                store_phone storePhone,
+                owner_id ownerId,
+                biz_number bizNumber,
+                reg_dt regDt,
+                modi_dt modiDt
+        FROM store
+        WHERE owner_id = #{ownerId}
+        AND store_id  = #{storeId}
+    </select>
+
+    <update id="updateStore" parameterType="StoreDto">
+        UPDATE store
+        SET store_name = #{storeName},
+            category_id = #{categoryId},
+            store_address1 = #{storeAddress1},
+            store_address2 = #{storeAddress2},
+            store_phone = #{storePhone},
+            modi_dt = current_timestamp
+        WHERE owner_id = #{ownerId}
+        AND store_id = #{storeId}
+    </update>
+
+    <delete id="deleteStore" parameterType="String">
+        DELETE from store
+        WHERE owner_id = #{ownerId}
+        AND store_id = #{storeId}
+    </delete>
 </mapper>

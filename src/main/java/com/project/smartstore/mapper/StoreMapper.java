@@ -10,4 +10,10 @@ public interface StoreMapper {
   void createStore(StoreDto store);
 
   List<StoreDto> selectStoreList(String ownerId);
+
+  StoreDto selectStore(String ownerId, String storeId);
+
+  void updateStore(StoreDto store);
+
+  void deleteStore(String ownerId, String storeId);
 }
