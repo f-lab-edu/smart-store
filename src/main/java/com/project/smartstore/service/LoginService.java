@@ -1,13 +1,12 @@
 package com.project.smartstore.service;
 
 import com.project.smartstore.dto.UserDto;
-import javax.servlet.http.HttpSession;
 
 public interface LoginService {
 
-  void login(UserDto user, HttpSession session);
+  void login(UserDto user);
 
-  void logout(UserDto user, HttpSession session);
+  void logout();
 
-  String getLoginId(HttpSession session);
+  String getLoginId();
 }
