@@ -6,11 +6,14 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 @RequiredArgsConstructor
 public class StoreServiceImpl implements StoreService {
 
   private final StoreMapper storeMapper;
+  private final LoginService sessionLoginService;
 
   @Override
   public void createStore(StoreDto store) {
@@ -18,13 +21,13 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
-  public List<StoreDto> selectStoreList(String ownerId) {
-    return storeMapper.selectStoreList(ownerId);
+  public List<StoreDto> selectStoreList() {
+    return storeMapper.selectStoreList(sessionLoginService.getLoginId());
   }
 
   @Override
-  public StoreDto selectStore(String ownerId, String storeId) {
-    return storeMapper.selectStore(ownerId, storeId);
+  public StoreDto selectStore(String storeId) {
+    return storeMapper.selectStore(sessionLoginService.getLoginId(), storeId);
   }
 
   @Override
@@ -33,7 +36,7 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
-  public void deleteStore(String ownerId, String storeId) {
-    storeMapper.deleteStore(ownerId, storeId);
+  public void deleteStore(String storeId) {
+    storeMapper.deleteStore(sessionLoginService.getLoginId(), storeId);
   }
 }
