@@ -2,7 +2,7 @@ package com.project.smartstore.service;
 
 import com.project.smartstore.dto.UserDto;
 import java.util.Optional;
-import javax.servlet.http.HttpSession;
+
 
 public interface UserService {
 
@@ -14,6 +14,6 @@ public interface UserService {
 
   public void updateUser(UserDto user);
 
-  public void deleteUser(UserDto user, HttpSession session);
+  public void deleteUser(UserDto user);
 
 }

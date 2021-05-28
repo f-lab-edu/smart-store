@@ -11,11 +11,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
   private final UserMapper userMapper;
+  private final LoginService sessionLoginService;
 
   /*
    * @Value는 properties의 프로퍼티를 읽을 수 있게 합니다.
@@ -52,10 +54,10 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void deleteUser(UserDto user, HttpSession session) {
+  public void deleteUser(UserDto user) {
     UserDto encryptedUser = encryptUser(user);
     userMapper.deleteUser(encryptedUser);
-    session.invalidate();
+    sessionLoginService.logout();
   }
 
   private UserDto encryptUser(UserDto user) {
