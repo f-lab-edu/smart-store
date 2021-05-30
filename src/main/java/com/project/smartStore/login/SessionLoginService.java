@@ -14,12 +14,12 @@ public class SessionLoginService implements LoginService {
 
   private final EncryptionConverter encryptionConverter;
 
-  private final CustomerService customerServiceImpl;
+  private final CustomerService customerService;
 
   @Override
   public void login(HttpSession httpSession, LoginDTO LoginDTO) {
     String inputPassword = encryptionConverter.ConvertSHA256WithSalt(LoginDTO.getPassword());
-    String StoredPaswword = customerServiceImpl.getCustomerPassword(LoginDTO.getId());
+    String StoredPaswword = customerService.getCustomerPassword(LoginDTO.getId());
 
     if (inputPassword.equals(StoredPaswword)) {
       httpSession.setAttribute(LOGIN_ATTRIBUTE, LoginDTO.getId());
