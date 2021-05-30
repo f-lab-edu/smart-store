@@ -23,7 +23,7 @@ public class EncryptionConverter {
       byte[] bytes = messageDigest.digest(inputWithSalt.getBytes(StandardCharsets.UTF_8));
       return bytesToHex(bytes);
     } catch (NoSuchAlgorithmException e) {
-      throw new IllegalAlgorithmException(e.getMessage(), e.getCause());
+      throw new IllegalAlgorithmException("암호화 알고리즘을 찾는데 실패하였습니다.", e);
     }
   }
 
