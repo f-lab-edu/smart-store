@@ -11,4 +11,18 @@
             #{storeId});
   </insert>
 
+  <select id="selectProductList" parameterType="SearchConditionDto" resultType="ProductDto">
+    SELECT product_name, category_id, price, main_img
+    FROM smartstore_db.product
+    <where>
+      <if test="@framework.util.CommonUtil@notEmpty(categoryId)">
+        category_id = #{categoryId}
+      </if>
+      <if test="@framework.util.CommonUtil@notEmpty(searchKeyword)">
+        AND (product_name LIKE CONCAT('%',#{searchKeyword},'%') OR description LIKE
+        CONCAT('%',#{searchKeyword},'%'));
+      </if>
+    </where>
+  </select>
+
 </mapper>
