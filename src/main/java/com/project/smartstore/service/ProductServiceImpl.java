@@ -1,6 +1,7 @@
 package com.project.smartstore.service;
 
 import com.project.smartstore.dto.ProductDto;
+import com.project.smartstore.dto.ProductListDto;
 import com.project.smartstore.dto.SearchConditionDto;
 import com.project.smartstore.mapper.ProductMapper;
 import java.util.List;
@@ -19,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public List<ProductDto> getProductList(SearchConditionDto searchConditionDto) {
-    return productMapper.selectProduct(searchConditionDto);
+  public List<ProductListDto> getProductList(SearchConditionDto searchConditionDto) {
+    return productMapper.selectProductList(searchConditionDto);
   }
 }

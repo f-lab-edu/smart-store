@@ -11,16 +11,20 @@
             #{storeId});
   </insert>
 
-  <select id="selectProductList" parameterType="SearchConditionDto" resultType="ProductDto">
-    SELECT product_name, category_id, price, main_img
+  <select id="selectProductList" parameterType="SearchConditionDto" resultType="ProductListDto">
+    SELECT product_id AS productId,
+           product_name AS productName,
+           category_id AS categoryId,
+           price,
+           main_img AS mainImg
     FROM smartstore_db.product
     <where>
-      <if test="@framework.util.CommonUtil@notEmpty(categoryId)">
+      <if test="categoryId != null">
         category_id = #{categoryId}
       </if>
-      <if test="@framework.util.CommonUtil@notEmpty(searchKeyword)">
-        AND (product_name LIKE CONCAT('%',#{searchKeyword},'%') OR description LIKE
-        CONCAT('%',#{searchKeyword},'%'));
+      <if test="searchKeyword != null">
+        AND (product_name LIKE CONCAT('%',#{searchKeyword},'%')
+        OR description LIKE CONCAT('%',#{searchKeyword},'%'));
       </if>
     </where>
   </select>

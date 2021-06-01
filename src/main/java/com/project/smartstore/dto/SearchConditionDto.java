@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SearchConditionDto {
 
-  private int categoryId;
+  private Integer categoryId;
 
   private String searchKeyword;
 }

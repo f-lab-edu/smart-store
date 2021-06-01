@@ -1,6 +1,7 @@
 package com.project.smartstore.controller;
 
 import com.project.smartstore.dto.ProductDto;
+import com.project.smartstore.dto.ProductListDto;
 import com.project.smartstore.dto.SearchConditionDto;
 import com.project.smartstore.service.ProductService;
 import java.util.List;
@@ -25,8 +26,8 @@ public class ProductController {
   }
 
   @GetMapping
-  public List<ProductDto> getProductList(@RequestParam("cateId") int categoryId,
-      @RequestParam("keyword") String searchKeyword) {
+  public List<ProductListDto> getProductList(@RequestParam(value = "cateId", required = false) Integer categoryId,
+      @RequestParam(value = "keyword", required = false) String searchKeyword) {
     return productService.getProductList(new SearchConditionDto(categoryId, searchKeyword));
   }
 }
