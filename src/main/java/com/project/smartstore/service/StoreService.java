@@ -10,6 +10,8 @@ public interface StoreService {
 
   List<StoreDto> selectStoreList(String sessionLoginId);
 
+  int countStores(String ownerId);
+
   StoreDto selectStore(String sessionLoginId, String storeId);
 
   void updateStore(StoreDto store);

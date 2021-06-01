@@ -22,6 +22,11 @@
         WHERE owner_id = #{ownerId}
     </select>
 
+    <select id="countStores" parameterType="String" resultType="int">
+        SELECT COUNT(store_id) FROM store
+        WHERE owner_id = #{ownerId}
+    </select>
+
     <select id="selectStore" parameterType="String" resultType="StoreDto">
         SELECT  store_id  storeId,
                 store_name storeName,

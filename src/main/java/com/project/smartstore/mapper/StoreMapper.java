@@ -11,6 +11,8 @@ public interface StoreMapper {
 
   List<StoreDto> selectStoreList(String ownerId);
 
+  int countStores(String ownerId);
+
   StoreDto selectStore(String ownerId, String storeId);
 
   void updateStore(StoreDto store);
