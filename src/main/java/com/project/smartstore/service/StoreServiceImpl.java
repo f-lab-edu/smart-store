@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class StoreServiceImpl implements StoreService {
 
   private final StoreMapper storeMapper;
-  private final LoginService sessionLoginService;
 
   @Override
   public void createStore(StoreDto store) {
@@ -21,13 +20,13 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
-  public List<StoreDto> selectStoreList() {
-    return storeMapper.selectStoreList(sessionLoginService.getLoginId());
+  public List<StoreDto> selectStoreList(String sessionLoginId) {
+    return storeMapper.selectStoreList(sessionLoginId);
   }
 
   @Override
-  public StoreDto selectStore(String storeId) {
-    return storeMapper.selectStore(sessionLoginService.getLoginId(), storeId);
+  public StoreDto selectStore(String sessionLoginId, String storeId) {
+    return storeMapper.selectStore(sessionLoginId, storeId);
   }
 
   @Override
@@ -36,7 +35,7 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
-  public void deleteStore(String storeId) {
-    storeMapper.deleteStore(sessionLoginService.getLoginId(), storeId);
+  public void deleteStore(String sessionLoginId, String storeId) {
+    storeMapper.deleteStore(sessionLoginId,  storeId);
   }
 }

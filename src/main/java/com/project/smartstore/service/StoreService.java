@@ -8,11 +8,11 @@ public interface StoreService {
 
   void createStore(StoreDto store);
 
-  List<StoreDto> selectStoreList();
+  List<StoreDto> selectStoreList(String sessionLoginId);
 
-  StoreDto selectStore(String storeId);
+  StoreDto selectStore(String sessionLoginId, String storeId);
 
   void updateStore(StoreDto store);
 
-  void deleteStore(String storeId);
+  void deleteStore(String sessionLoginId, String storeId);
 }

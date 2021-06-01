@@ -5,7 +5,6 @@ import com.project.smartstore.exception.DuplicatedIdException;
 import com.project.smartstore.mapper.UserMapper;
 import com.project.smartstore.utils.PasswordEncryptor;
 import java.util.Optional;
-import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   private final UserMapper userMapper;
-  private final LoginService sessionLoginService;
 
   /*
    * @Value는 properties의 프로퍼티를 읽을 수 있게 합니다.
@@ -57,7 +55,6 @@ public class UserServiceImpl implements UserService {
   public void deleteUser(UserDto user) {
     UserDto encryptedUser = encryptUser(user);
     userMapper.deleteUser(encryptedUser);
-    sessionLoginService.logout();
   }
 
   private UserDto encryptUser(UserDto user) {
