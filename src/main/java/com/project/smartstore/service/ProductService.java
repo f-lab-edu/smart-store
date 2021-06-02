@@ -22,4 +22,8 @@ public class ProductService {
   public List<ProductListDto> getProductList(SearchConditionDto searchConditionDto) {
     return productMapper.selectProductList(searchConditionDto);
   }
+
+  public ProductDto getProduct(int productId) {
+    return productMapper.selectProduct(productId);
+  }
 }

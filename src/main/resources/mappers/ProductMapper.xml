@@ -29,4 +29,16 @@
     </where>
   </select>
 
+  <select id="selectProduct" parameterType="int" resultType="ProductDto">
+    SELECT product_name AS name,
+           category_id  AS category,
+           price,
+           amount,
+           main_img     AS mainImage,
+           detail_img   AS detailImage,
+           description,
+           store_id     AS storeId
+    FROM smartstore_db.product
+    WHERE product_id = #{productId};
+  </select>
 </mapper>
