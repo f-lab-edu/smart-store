@@ -1,7 +1,7 @@
 package com.project.smartstore.controller;
 
 import com.project.smartstore.annotation.LoginCheck;
-import com.project.smartstore.annotation.SessionLoginId;
+import com.project.smartstore.annotation.LoginUserId;
 import com.project.smartstore.dto.StoreDto;
 import com.project.smartstore.service.StoreService;
 import java.util.List;
@@ -41,14 +41,14 @@ public class StoreController {
    */
   @LoginCheck
   @GetMapping
-  public List<StoreDto> selectStoreList(@SessionLoginId String sessionLoginId) {
-    return storeService.selectStoreList(sessionLoginId);
+  public List<StoreDto> selectStoreList(@LoginUserId String loginUserId) {
+    return storeService.selectStoreList(loginUserId);
   }
 
   @LoginCheck
   @GetMapping("/{storeId}")
-  public StoreDto selectStore(@SessionLoginId String sessionLoginId, @PathVariable String storeId) {
-    return storeService.selectStore(sessionLoginId, storeId);
+  public StoreDto selectStore(@LoginUserId String loginUserId, @PathVariable String storeId) {
+    return storeService.selectStore(loginUserId, storeId);
   }
 
   @LoginCheck
@@ -59,7 +59,7 @@ public class StoreController {
 
   @LoginCheck
   @DeleteMapping("/{storeId}")
-  public void deleteMapping(@SessionLoginId String sessionLoginId, @PathVariable String storeId) {
-    storeService.deleteStore(sessionLoginId, storeId);
+  public void deleteMapping(@LoginUserId String loginUserId, @PathVariable String storeId) {
+    storeService.deleteStore(loginUserId, storeId);
   }
 }

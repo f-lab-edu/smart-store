@@ -1,6 +1,6 @@
 package com.project.smartstore.aop;
 
-import com.project.smartstore.annotation.SessionLoginId;
+import com.project.smartstore.annotation.LoginUserId;
 import com.project.smartstore.constants.SessionLoginConstant;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -21,8 +21,8 @@ public class UserAspect {
 
   private final HttpSession session;
 
-  @Around("execution(* *(.., @com.project.smartstore.annotation.SessionLoginId (String), ..))")
-  public Object injectSessionLoginId(ProceedingJoinPoint joinPoint) throws Throwable {
+  @Around("execution(* *(.., @com.project.smartstore.annotation.LoginUserId (String), ..))")
+  public Object injectUserInfo(ProceedingJoinPoint joinPoint) throws Throwable {
 
     String loginId = (String) session.getAttribute(SessionLoginConstant.LOGIN_ID);
 
@@ -34,7 +34,7 @@ public class UserAspect {
 
     for (int i = 0; i < annotations.length; i++) {
       for (Annotation annotation : annotations[i]) {
-        if (annotation instanceof SessionLoginId) {
+        if (annotation instanceof LoginUserId) {
           args[i] = loginId;
           break;
         }
