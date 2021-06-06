@@ -5,9 +5,9 @@
 <mapper namespace="com.project.smartstore.mapper.ProductMapper">
 
   <insert id="insertProduct" parameterType="ProductDto">
-    INSERT INTO product (product_name, category_id, price, amount, main_img,
+    INSERT INTO product (product_name, category_id, tag, price, amount, main_img,
                          detail_img, description, store_id)
-    VALUES (#{name}, #{category}, #{price}, #{amount}, #{mainImage}, #{detailImage}, #{description},
+    VALUES (#{name}, #{category}, #{tag}, #{price}, #{amount}, #{mainImage}, #{detailImage}, #{description},
             #{storeId});
   </insert>
 
@@ -15,16 +15,18 @@
     SELECT product_id AS productId,
            product_name AS productName,
            category_id AS categoryId,
+           tag,
            price,
+           reg_dt AS registerDate,
            main_img AS mainImg
     FROM smartstore_db.product
     <where>
       <if test="categoryId != null">
         category_id = #{categoryId}
       </if>
-      <if test="searchKeyword != null">
+      <if test="tag != null">
         AND (product_name LIKE CONCAT('%',#{searchKeyword},'%')
-        OR description LIKE CONCAT('%',#{searchKeyword},'%'));
+        OR tag LIKE CONCAT('%',#{searchKeyword},'%'));
       </if>
     </where>
   </select>

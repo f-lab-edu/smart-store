@@ -15,6 +15,7 @@ public class ProductListDto {
   private String productName;
   private String categoryId;
   private int price;
+  private String registerDate;
   private String mainImg;
 
 }
