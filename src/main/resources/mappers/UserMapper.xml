@@ -13,7 +13,7 @@
     </select>
 
     <select id="findUserById" parameterType="UserDto" resultType="UserDto">
-        SELECT id , password
+        SELECT id, phone, name, type
         FROM member
         WHERE id = #{id}
     </select>

@@ -29,8 +29,8 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
-  public List<StoreDto> selectStoreList(String sessionLoginId) {
-    return storeMapper.selectStoreList(sessionLoginId);
+  public List<StoreDto> selectStoreList(String ownerId) {
+    return storeMapper.selectStoreList(ownerId);
   }
 
   @Override
@@ -39,8 +39,8 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
-  public StoreDto selectStore(String sessionLoginId, String storeId) {
-    return storeMapper.selectStore(sessionLoginId, storeId);
+  public StoreDto selectStore(String ownerId, String storeId) {
+    return storeMapper.selectStore(ownerId, storeId);
   }
 
   @Override
@@ -49,7 +49,7 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
-  public void deleteStore(String sessionLoginId, String storeId) {
-    storeMapper.deleteStore(sessionLoginId,  storeId);
+  public void deleteStore(String ownerId, String storeId) {
+    storeMapper.deleteStore(ownerId,  storeId);
   }
 }

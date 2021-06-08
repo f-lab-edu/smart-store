@@ -12,9 +12,9 @@ public interface StoreService {
 
   int countStores(String ownerId);
 
-  StoreDto selectStore(String sessionLoginId, String storeId);
+  StoreDto selectStore(String ownerId, String storeId);
 
   void updateStore(StoreDto store);
 
-  void deleteStore(String sessionLoginId, String storeId);
+  void deleteStore(String ownerId, String storeId);
 }

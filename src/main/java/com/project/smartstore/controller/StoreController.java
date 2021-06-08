@@ -1,8 +1,9 @@
 package com.project.smartstore.controller;
 
 import com.project.smartstore.annotation.LoginCheck;
-import com.project.smartstore.annotation.LoginUserId;
+import com.project.smartstore.annotation.LoginUserInfo;
 import com.project.smartstore.dto.StoreDto;
+import com.project.smartstore.dto.UserDto;
 import com.project.smartstore.service.StoreService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -41,14 +42,14 @@ public class StoreController {
    */
   @LoginCheck
   @GetMapping
-  public List<StoreDto> selectStoreList(@LoginUserId String loginUserId) {
+  public List<StoreDto> selectStoreList(@LoginUserInfo String loginUserId) {
     return storeService.selectStoreList(loginUserId);
   }
 
   @LoginCheck
   @GetMapping("/{storeId}")
-  public StoreDto selectStore(@LoginUserId String loginUserId, @PathVariable String storeId) {
-    return storeService.selectStore(loginUserId, storeId);
+  public StoreDto selectStore(@LoginUserInfo UserDto userInfo, @PathVariable String storeId) {
+    return storeService.selectStore(userInfo.getId(), storeId);
   }
 
   @LoginCheck
@@ -59,7 +60,7 @@ public class StoreController {
 
   @LoginCheck
   @DeleteMapping("/{storeId}")
-  public void deleteMapping(@LoginUserId String loginUserId, @PathVariable String storeId) {
-    storeService.deleteStore(loginUserId, storeId);
+  public void deleteMapping(@LoginUserInfo UserDto userInfo, @PathVariable String storeId) {
+    storeService.deleteStore(userInfo.getId(), storeId);
   }
 }

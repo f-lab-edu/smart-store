@@ -43,4 +43,9 @@ public class SessionLoginService implements LoginService {
     }
     return loginId;
   }
+
+  @Override
+  public UserDto getLoginUserInfo() {
+    return userService.findUserById(getLoginId());
+  }
 }
