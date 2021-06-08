@@ -1,8 +1,11 @@
 package com.project.smartstore.controller;
 
-
+import com.project.smartstore.annotation.LoginCheck;
+import com.project.smartstore.dto.UserDto;
+import com.project.smartstore.service.LoginService;
+import com.project.smartstore.service.UserService;
 import javax.servlet.http.HttpSession;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.smartstore.annotation.LoginCheck;
-import com.project.smartstore.dto.UserDto;
-import com.project.smartstore.service.LoginService;
-import com.project.smartstore.service.UserService;
-
-import lombok.RequiredArgsConstructor;
 
 
 /**
@@ -52,8 +49,8 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public void login(@RequestBody UserDto user, HttpSession session) {
-    sessionLoginService.login(user, session);
+  public void login(@RequestBody UserDto user) {
+    sessionLoginService.login(user);
   }
 
   @LoginCheck
@@ -64,13 +61,13 @@ public class UserController {
 
   @LoginCheck
   @DeleteMapping("/account")
-  public void deleteUser(@RequestBody UserDto user, HttpSession session) {
-    userService.deleteUser(user, session);
+  public void deleteUser(@RequestBody UserDto user) {
+    userService.deleteUser(user);
   }
 
   @LoginCheck
   @GetMapping("/logout")
-  public void logout(@RequestBody UserDto user, HttpSession session) {
-    sessionLoginService.logout(user, session);
+  public void logout(@RequestBody UserDto user) {
+    sessionLoginService.logout();
   }
 }
