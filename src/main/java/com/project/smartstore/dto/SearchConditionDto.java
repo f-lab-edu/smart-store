@@ -14,4 +14,8 @@ public class SearchConditionDto {
   private Integer categoryId;
 
   private String searchKeyword;
+
+  private String sort;
+
+  private PagingOffsetDto pagingOffsetDto;
 }

@@ -3,6 +3,7 @@ package com.project.smartstore.service;
 import com.project.smartstore.dto.ProductDto;
 import com.project.smartstore.dto.ProductListDto;
 import com.project.smartstore.dto.SearchConditionDto;
+import com.project.smartstore.paging.PaginationListDto;
 import java.util.List;
 import com.project.smartstore.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,14 @@ public class ProductService {
     productMapper.insertProduct(productDto);
   }
 
-  public List<ProductListDto> getProductList(SearchConditionDto searchConditionDto) {
-    return productMapper.selectProductList(searchConditionDto);
+  public PaginationListDto getProductList(SearchConditionDto searchConditionDto) {
+    List<ProductListDto> productListDto = productMapper.selectProductList(searchConditionDto);
+    int totalRecordCount = getProductListCount(searchConditionDto);
+    return new PaginationListDto(totalRecordCount, productListDto);
   }
+
+  private int getProductListCount(SearchConditionDto searchConditionDto){
+    return productMapper.selectProductListCount(searchConditionDto);
+  }
+
 }

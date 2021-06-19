@@ -12,4 +12,6 @@ public interface ProductMapper {
   void insertProduct(ProductDto productDto);
 
   List<ProductListDto> selectProductList(SearchConditionDto searchConditionDto);
+
+  int selectProductListCount(SearchConditionDto searchConditionDto);
 }
