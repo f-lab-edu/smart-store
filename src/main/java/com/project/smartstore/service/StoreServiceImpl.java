@@ -7,6 +7,7 @@ import com.project.smartstore.mapper.StoreMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 
@@ -29,16 +30,19 @@ public class StoreServiceImpl implements StoreService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public List<StoreDto> selectStoreList(String ownerId) {
     return storeMapper.selectStoreList(ownerId);
   }
 
   @Override
+  @Transactional(readOnly = true)
   public int countStores(String ownerId) {
     return storeMapper.countStores(ownerId);
   }
 
   @Override
+  @Transactional(readOnly = true)
   public StoreDto selectStore(String ownerId, String storeId) {
     return storeMapper.selectStore(ownerId, storeId);
   }
