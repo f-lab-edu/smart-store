@@ -14,4 +14,6 @@ public interface ProductMapper {
   List<ProductListDto> selectProductList(SearchConditionDto searchConditionDto);
 
   ProductDto selectProduct(int productId);
+
+  int selectProductListCount(SearchConditionDto searchConditionDto);
 }
