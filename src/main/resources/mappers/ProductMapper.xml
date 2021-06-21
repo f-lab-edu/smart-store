@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.smartstore.mapper.ProductMapper">
+
+  <insert id="insertProduct" parameterType="ProductDto">
+    INSERT INTO product (product_name, category_id, tag, price, amount, main_img,
+                         detail_img, description, store_id)
+    VALUES (#{name}, #{category}, #{tag}, #{price}, #{amount}, #{mainImage}, #{detailImage},
+            #{description},
+            #{storeId});
+  </insert>
+
+  <select id="selectProductList" parameterType="SearchConditionDto" resultType="ProductListDto">
+    SELECT product_id AS productId,
+    product_name AS productName,
+    category_id AS categoryId,
+    tag,
+    price,
+    reg_dt AS registerDate,
+    main_img AS mainImg
+    FROM smartstore_db.product
+    <where>
+      <if test="categoryId != null">
+        category_id = #{categoryId}
+      </if>
+      <if test="searchKeyword != null">
+        AND (product_name LIKE CONCAT('%',#{searchKeyword},'%')
+        OR tag LIKE CONCAT('%',#{searchKeyword},'%'))
+      </if>
+    </where>
+    ORDER BY
+    <choose>
+      <when test="sort == 'date'">reg_dt DESC</when>
+      <when test="sort == 'price_asc'">price</when>
+      <when test="sort == 'price_desc'">price DESC</when>
+    </choose>
+    LIMIT #{pagingOffsetDto.offsetNum}, #{pagingOffsetDto.recordCountPerPage};
+  </select>
+
+  <select id="selectProductListCount" parameterType="SearchConditionDto" resultType="_int">
+    SELECT COUNT(*)
+    FROM smartstore_db.product
+    <where>
+      <if test="categoryId != null">
+        category_id = #{categoryId}
+      </if>
+      <if test="searchKeyword != null">
+        AND (product_name LIKE CONCAT('%',#{searchKeyword},'%')
+        OR tag LIKE CONCAT('%',#{searchKeyword},'%'))
+      </if>
+    </where>
+  </select>
+
+</mapper>
