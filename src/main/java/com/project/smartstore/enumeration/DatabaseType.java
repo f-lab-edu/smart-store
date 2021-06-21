@@ -1,5 +1,5 @@
 package com.project.smartstore.enumeration;
 
-public enum ClientDatabaseType {
+public enum DatabaseType {
   MASTER, SLAVE;
 }

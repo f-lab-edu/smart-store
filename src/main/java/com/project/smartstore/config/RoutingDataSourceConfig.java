@@ -1,6 +1,6 @@
 package com.project.smartstore.config;
 
-import com.project.smartstore.enumeration.ClientDatabaseType;
+import com.project.smartstore.enumeration.DatabaseType;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -63,14 +63,14 @@ public class RoutingDataSourceConfig {
       protected Object determineCurrentLookupKey() {
         boolean isReadonly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
 
-        return isReadonly ?  ClientDatabaseType.SLAVE : ClientDatabaseType.MASTER;
+        return isReadonly ?  DatabaseType.SLAVE : DatabaseType.MASTER;
       }
     };
 
     Map<Object, Object> targetDataSources = new HashMap<>();
 
-    targetDataSources.put(ClientDatabaseType.MASTER, masterDataSource);
-    targetDataSources.put(ClientDatabaseType.SLAVE, slaveDataSource);
+    targetDataSources.put(DatabaseType.MASTER, masterDataSource);
+    targetDataSources.put(DatabaseType.SLAVE, slaveDataSource);
 
     routingDataSource.setTargetDataSources(targetDataSources);
     routingDataSource.setDefaultTargetDataSource(masterDataSource);
