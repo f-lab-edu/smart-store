@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,9 +39,15 @@ public class ProductController {
         new PagingOffsetDto(pagingIndex, pagingSize)));
   }
 
-  @Cacheable(value = "product", key = "#productId" )
+  @Cacheable(value = "product", key = "#productId")
   @GetMapping("/{productId}")
-  public ProductDto getProduct(@PathVariable("productId") int productId){
+  public ProductDto getProduct(@PathVariable("productId") int productId) {
     return productService.getProduct(productId);
+  }
+
+  @PutMapping("/{productId}")
+  public void modifyProduct(@PathVariable int productId, @RequestBody ProductDto productDto) {
+
+    productService.modifyProduct(productId, productDto);
   }
 }

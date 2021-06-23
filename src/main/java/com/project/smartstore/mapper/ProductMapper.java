@@ -5,6 +5,7 @@ import com.project.smartstore.dto.ProductListDto;
 import com.project.smartstore.dto.SearchConditionDto;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ProductMapper {
@@ -16,4 +17,6 @@ public interface ProductMapper {
   ProductDto selectProduct(int productId);
 
   int selectProductListCount(SearchConditionDto searchConditionDto);
+
+  void updateProduct(@Param("productId") int productId,@Param("ProductDto") ProductDto productDto);
 }

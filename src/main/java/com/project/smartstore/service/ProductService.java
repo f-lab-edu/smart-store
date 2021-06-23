@@ -34,4 +34,7 @@ public class ProductService {
     return productMapper.selectProductListCount(searchConditionDto);
   }
 
+  public void modifyProduct(int productId, ProductDto productDto) {
+    productMapper.updateProduct(productId, productDto);
+  }
 }
