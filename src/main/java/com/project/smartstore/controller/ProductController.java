@@ -6,6 +6,7 @@ import com.project.smartstore.dto.PagingOffsetDto;
 import com.project.smartstore.paging.PaginationListDto;
 import com.project.smartstore.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,9 +46,9 @@ public class ProductController {
     return productService.getProduct(productId);
   }
 
+  @CachePut(value = "product", key = "#productId")
   @PutMapping("/{productId}")
-  public void modifyProduct(@PathVariable int productId, @RequestBody ProductDto productDto) {
-
-    productService.modifyProduct(productId, productDto);
+  public ProductDto modifyProduct(@PathVariable int productId, @RequestBody ProductDto productDto) {
+    return productService.modifyProduct(productId, productDto);
   }
 }

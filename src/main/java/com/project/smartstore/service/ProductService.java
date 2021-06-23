@@ -30,11 +30,12 @@ public class ProductService {
     return productMapper.selectProduct(productId);
   }
 
-  private int getProductListCount(SearchConditionDto searchConditionDto){
+  private int getProductListCount(SearchConditionDto searchConditionDto) {
     return productMapper.selectProductListCount(searchConditionDto);
   }
 
-  public void modifyProduct(int productId, ProductDto productDto) {
+  public ProductDto modifyProduct(int productId, ProductDto productDto) {
     productMapper.updateProduct(productId, productDto);
+    return productMapper.selectProduct(productId);
   }
 }
