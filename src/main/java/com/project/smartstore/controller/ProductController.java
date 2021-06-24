@@ -8,6 +8,7 @@ import com.project.smartstore.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,5 +51,10 @@ public class ProductController {
   @PutMapping("/{productId}")
   public ProductDto modifyProduct(@PathVariable int productId, @RequestBody ProductDto productDto) {
     return productService.modifyProduct(productId, productDto);
+  }
+
+  @DeleteMapping("/{storeId}/{productId}")
+  public void deleteProduct(@PathVariable int storeId, @PathVariable int productId) {
+    productService.deleteProduct(storeId, productId);
   }
 }
