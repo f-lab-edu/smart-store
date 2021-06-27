@@ -3,7 +3,7 @@
 
 
 <mapper namespace="com.project.smartstore.mapper.UserMapper">
-    <insert id="insertUser" parameterType="com.project.smartstore.dto.UserDto">
+    <insert id="insertUser" parameterType="UserDto">
         INSERT INTO member(id, password, name, phone, type, address1, address2, reg_dt)
         VALUES(#{id}, #{password}, #{name}, #{phone}, #{type}, #{address1}, #{address2}, current_timestamp)
     </insert>
@@ -12,19 +12,19 @@
         SELECT EXISTS (SELECT id FROM member WHERE id = #{id})
     </select>
 
-    <select id="findUserById" parameterType="com.project.smartstore.dto.UserDto" resultType="com.project.smartstore.dto.UserDto">
+    <select id="findUserById" parameterType="UserDto" resultType="UserDto">
         SELECT id, phone, name, type
         FROM member
         WHERE id = #{id}
     </select>
 
-    <select id="findUserByIdAndPassword" parameterType="com.project.smartstore.dto.UserDto" resultType="com.project.smartstore.dto.UserDto">
+    <select id="findUserByIdAndPassword" parameterType="UserDto" resultType="UserDto">
         SELECT id, phone, name, type
         FROM member
         WHERE id = #{id} AND password = #{password}
     </select>
 
-    <update id="updateUser" parameterType="com.project.smartstore.dto.UserDto">
+    <update id="updateUser" parameterType="UserDto">
         UPDATE member
         SET name = #{name},
         phone = #{phone},
@@ -32,7 +32,7 @@
         WHERE id = #{id}
     </update>
 
-    <delete id="deleteUser" parameterType="com.project.smartstore.dto.UserDto">
+    <delete id="deleteUser" parameterType="UserDto">
         DELETE FROM member
         WHERE id = #{id} AND password = #{password}
     </delete>

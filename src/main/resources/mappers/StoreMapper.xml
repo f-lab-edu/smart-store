@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.smartstore.mapper.StoreMapper">
-    <insert id="createStore" parameterType="com.project.smartstore.dto.StoreDto">
+    <insert id="createStore" parameterType="StoreDto">
         INSERT INTO store(store_name, category_id, store_address1, store_address2, store_phone, owner_id, biz_number, reg_dt)
         VALUES(#{storeName}, #{categoryId}, #{storeAddress1}, #{storeAddress2}, #{storePhone}, #{ownerId}, #{bizNumber}, current_timestamp)
     </insert>
 
-    <select id="selectStoreList" parameterType="String" resultType="com.project.smartstore.dto.StoreDto">
+    <select id="selectStoreList" parameterType="String" resultType="StoreDto">
         SELECT  store_id  storeId,
                 store_name storeName,
                 category_id categoryId,
@@ -27,7 +27,7 @@
         WHERE owner_id = #{ownerId}
     </select>
 
-    <select id="selectStore" parameterType="String" resultType="com.project.smartstore.dto.StoreDto">
+    <select id="selectStore" parameterType="String" resultType="StoreDto">
         SELECT  store_id  storeId,
                 store_name storeName,
                 category_id categoryId,
@@ -43,7 +43,7 @@
         AND store_id  = #{storeId}
     </select>
 
-    <update id="updateStore" parameterType="com.project.smartstore.dto.StoreDto">
+    <update id="updateStore" parameterType="StoreDto">
         UPDATE store
         SET store_name = #{storeName},
             category_id = #{categoryId},
