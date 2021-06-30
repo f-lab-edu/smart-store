@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SmartStoreApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(SmartStoreApplication.class, args);   
+    SpringApplication.run(SmartStoreApplication.class, args);    
   }
 }
