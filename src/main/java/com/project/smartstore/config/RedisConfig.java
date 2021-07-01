@@ -72,6 +72,7 @@ public class RedisConfig {
     return RedisCacheManager.RedisCacheManagerBuilder
         .fromConnectionFactory(redisConnectionFactory)
         .withInitialCacheConfigurations(cacheConfigurationMap)
+        .cacheDefaults(defaultRedisCacheConfiguration())
         .build();
   }
 
