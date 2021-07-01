@@ -79,13 +79,14 @@
         detail_img   = #{ProductDto.detailImage},
         description  = #{ProductDto.description}
     WHERE product_id = #{productId}
-      AND store_id = #{ProductDto.storeId};
+    AND store_id = #{ProductDto.storeId};
   </update>
 
   <delete id="deleteProduct">
-    DELETE from smartstore_db.product
+    DELETE
+    from smartstore_db.product
     WHERE product_id = #{productId}
-      AND store_id = #{storeId};
+    AND store_id = #{storeId};
   </delete>
 
 </mapper>
