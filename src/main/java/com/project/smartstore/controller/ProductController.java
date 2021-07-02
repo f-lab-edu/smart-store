@@ -6,10 +6,14 @@ import com.project.smartstore.dto.PagingOffsetDto;
 import com.project.smartstore.paging.PaginationListDto;
 import com.project.smartstore.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,9 +42,21 @@ public class ProductController {
         new PagingOffsetDto(pagingIndex, pagingSize)));
   }
 
-  @Cacheable(value = "product", key = "#productId" )
+  @Cacheable(value = "product", key = "#productId")
   @GetMapping("/{productId}")
-  public ProductDto getProduct(@PathVariable("productId") int productId){
+  public ProductDto getProduct(@PathVariable("productId") int productId) {
     return productService.getProduct(productId);
+  }
+
+  @CachePut(value = "product", key = "#productId")
+  @PutMapping("/{productId}")
+  public ProductDto modifyProduct(@PathVariable int productId, @RequestBody ProductDto productDto) {
+    return productService.modifyProduct(productId, productDto);
+  }
+
+  @CacheEvict(value = "product", key = "#productId")
+  @DeleteMapping("/{storeId}/{productId}")
+  public void deleteProduct(@PathVariable int storeId, @PathVariable int productId) {
+    productService.deleteProduct(storeId, productId);
   }
 }
