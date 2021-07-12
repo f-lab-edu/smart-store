@@ -26,6 +26,10 @@ public class ProductService {
     return new PaginationListDto(totalRecordCount, productListDto);
   }
 
+  public ProductDto getProduct(int productId) {
+    return productMapper.selectProduct(productId);
+  }
+
   private int getProductListCount(SearchConditionDto searchConditionDto){
     return productMapper.selectProductListCount(searchConditionDto);
   }
