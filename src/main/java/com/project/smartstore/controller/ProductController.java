@@ -40,15 +40,13 @@ public class ProductController {
         new PagingOffsetDto(pagingIndex, pagingSize)));
   }
 
-  @Cacheable(value = "product", key = "#productId")
   @GetMapping("/{productId}")
   public ProductDto getProduct(@PathVariable("productId") int productId) {
     return productService.getProduct(productId);
   }
 
-  @CachePut(value = "product", key = "#productId")
   @PutMapping("/{productId}")
-  public ProductDto modifyProduct(@PathVariable int productId, @RequestBody ProductDto productDto) {
-    return productService.modifyProduct(productId, productDto);
+  public void modifyProduct(@PathVariable int productId, @RequestBody ProductDto productDto) {
+    productService.modifyProduct(productId, productDto);
   }
 }
