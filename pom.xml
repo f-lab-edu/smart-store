@@ -13,7 +13,7 @@
     <groupId>com.project.smartStore</groupId>
     <artifactId>smart-store</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>smart-store</name>
     <description>smart-store</description>
     <properties>

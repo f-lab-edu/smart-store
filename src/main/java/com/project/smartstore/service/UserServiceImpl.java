@@ -8,6 +8,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 
@@ -36,17 +37,20 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean isUsingId(String userId) {
     return userMapper.isUsingId(userId);
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Optional<UserDto> findUserByIdAndPassword(UserDto user) {
     UserDto encryptedUser = encryptUser(user);
     return Optional.ofNullable(userMapper.findUserByIdAndPassword(encryptedUser));
   }
 
   @Override
+  @Transactional(readOnly = true)
   public UserDto findUserById(String userId) {
     return userMapper.findUserById(userId);
   }
