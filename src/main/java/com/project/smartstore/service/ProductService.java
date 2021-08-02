@@ -41,4 +41,8 @@ public class ProductService {
   public void modifyProduct(int productId, ProductDto productDto) {
     productMapper.updateProduct(productId, productDto);
   }
+
+  public void deleteProduct(int storeId, int productId) {
+    productMapper.deleteProduct(storeId, productId);
+  }
 }
