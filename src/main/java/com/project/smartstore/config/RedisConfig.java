@@ -1,5 +1,8 @@
 package com.project.smartstore.config;
 
+
+
+import com.project.smartstore.constants.CacheNameConstants;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +69,7 @@ public class RedisConfig {
   @Bean
   public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
     Map<String, RedisCacheConfiguration> cacheConfigurationMap = new HashMap<>();
-    cacheConfigurationMap.put("product",
+    cacheConfigurationMap.put(CacheNameConstants.PRODUCT.toString(),
         defaultRedisCacheConfiguration().entryTtl(Duration.ofSeconds(600)));
 
     return RedisCacheManager.RedisCacheManagerBuilder
