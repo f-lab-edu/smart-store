@@ -7,6 +7,8 @@ import com.project.smartstore.paging.PaginationListDto;
 import java.util.List;
 import com.project.smartstore.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 
@@ -26,12 +28,21 @@ public class ProductService {
     return new PaginationListDto(totalRecordCount, productListDto);
   }
 
+  @Cacheable(value = "product", key = "#productId")
   public ProductDto getProduct(int productId) {
     return productMapper.selectProduct(productId);
   }
 
-  private int getProductListCount(SearchConditionDto searchConditionDto){
+  private int getProductListCount(SearchConditionDto searchConditionDto) {
     return productMapper.selectProductListCount(searchConditionDto);
   }
 
+  @CachePut(value = "product", key = "#productId")
+  public void modifyProduct(int productId, ProductDto productDto) {
+    productMapper.updateProduct(productId, productDto);
+  }
+
+  public void deleteProduct(int storeId, int productId) {
+    productMapper.deleteProduct(storeId, productId);
+  }
 }

@@ -67,4 +67,26 @@
     FROM smartstore_db.product
     WHERE product_id = #{productId};
   </select>
+
+  <update id="updateProduct">
+    UPDATE smartstore_db.product
+    SET product_name = #{ProductDto.name},
+        category_id  = #{ProductDto.category},
+        tag          = #{ProductDto.tag},
+        price        = #{ProductDto.price},
+        amount       = #{ProductDto.amount},
+        main_img     = #{ProductDto.mainImage},
+        detail_img   = #{ProductDto.detailImage},
+        description  = #{ProductDto.description}
+    WHERE product_id = #{productId}
+    AND store_id = #{ProductDto.storeId};
+  </update>
+
+  <delete id="deleteProduct">
+    DELETE
+    from smartstore_db.product
+    WHERE product_id = #{productId}
+    AND store_id = #{storeId};
+  </delete>
+
 </mapper>
