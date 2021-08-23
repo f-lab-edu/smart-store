@@ -1,7 +1,7 @@
 package com.project.smartstore.constants;
 
-public enum CacheNameConstants {
+public class CacheNameConstants {
 
-  PRODUCT
+  public static final String PRODUCT = "product";
 
 }

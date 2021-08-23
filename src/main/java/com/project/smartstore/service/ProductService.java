@@ -1,5 +1,6 @@
 package com.project.smartstore.service;
 
+import com.project.smartstore.constants.CacheNameConstants;
 import com.project.smartstore.dto.ProductDto;
 import com.project.smartstore.dto.ProductListDto;
 import com.project.smartstore.dto.SearchConditionDto;
@@ -28,7 +29,7 @@ public class ProductService {
     return new PaginationListDto(totalRecordCount, productListDto);
   }
 
-  @Cacheable(value = "product", key = "#productId")
+  @Cacheable(value = CacheNameConstants.PRODUCT, key = "#productId")
   public ProductDto getProduct(int productId) {
     return productMapper.selectProduct(productId);
   }
@@ -37,7 +38,7 @@ public class ProductService {
     return productMapper.selectProductListCount(searchConditionDto);
   }
 
-  @CachePut(value = "product", key = "#productId")
+  @CachePut(value = CacheNameConstants.PRODUCT, key = "#productId")
   public void modifyProduct(int productId, ProductDto productDto) {
     productMapper.updateProduct(productId, productDto);
   }

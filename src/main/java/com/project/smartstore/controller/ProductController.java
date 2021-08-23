@@ -1,5 +1,6 @@
 package com.project.smartstore.controller;
 
+import com.project.smartstore.constants.CacheNameConstants;
 import com.project.smartstore.dto.ProductDto;
 import com.project.smartstore.dto.SearchConditionDto;
 import com.project.smartstore.dto.PagingOffsetDto;
@@ -7,8 +8,6 @@ import com.project.smartstore.paging.PaginationListDto;
 import com.project.smartstore.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,7 +51,7 @@ public class ProductController {
     productService.modifyProduct(productId, productDto);
   }
 
-  @CacheEvict(value = "product", key = "#productId")
+  @CacheEvict(value = CacheNameConstants.PRODUCT, key = "#productId")
   @DeleteMapping("/{storeId}/{productId}")
   public void deleteProduct(@PathVariable int storeId, @PathVariable int productId) {
     productService.deleteProduct(storeId, productId);

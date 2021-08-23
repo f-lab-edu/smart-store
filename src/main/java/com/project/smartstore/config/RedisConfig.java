@@ -69,7 +69,7 @@ public class RedisConfig {
   @Bean
   public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
     Map<String, RedisCacheConfiguration> cacheConfigurationMap = new HashMap<>();
-    cacheConfigurationMap.put(CacheNameConstants.PRODUCT.toString(),
+    cacheConfigurationMap.put(CacheNameConstants.PRODUCT,
         defaultRedisCacheConfiguration().entryTtl(Duration.ofSeconds(600)));
 
     return RedisCacheManager.RedisCacheManagerBuilder
