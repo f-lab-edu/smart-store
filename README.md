@@ -33,7 +33,7 @@
 작업중
 
 ### 데이터베이스 구조
-작업중
+![db 구조](https://user-images.githubusercontent.com/37571052/135104577-098a99c8-47eb-4915-8f76-421b41cf82de.png)
 
 ### 개발 이슈 포스팅
 * [isaac1102](https://github.com/f-lab-edu/smart-store/wiki/isaac1102%EC%9D%98-%EA%B0%9C%EB%B0%9C-%EC%9D%B4%EC%8A%88-%ED%8F%AC%EC%8A%A4%ED%8C%85)
