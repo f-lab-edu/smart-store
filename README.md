@@ -29,6 +29,9 @@
 * [판매자 유즈 케이스](https://github.com/f-lab-edu/smart-store/wiki/%ED%8C%90%EB%A7%A4%EC%9E%90-%EC%9C%A0%EC%A6%88-%EC%BC%80%EC%9D%B4%EC%8A%A4)
 * [구매자 유즈 케이스](https://github.com/f-lab-edu/smart-store/wiki/%EA%B5%AC%EB%A7%A4%EC%9E%90-%EC%9C%A0%EC%A6%88-%EC%BC%80%EC%9D%B4%EC%8A%A4)
 
+### 사용한 기술스택
+![Screenshot_4](https://user-images.githubusercontent.com/37571052/135284312-3848d02f-9101-4020-96e7-c2a33945cfab.png)
+
 ### 화면 프로토 타입
 작업중
 
