@@ -1,4 +1,4 @@
-package com.project.smartStore;
+package com.project.smartstore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
